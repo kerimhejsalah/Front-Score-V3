@@ -1,0 +1,73 @@
+<div class="header row">
+    <div class="">
+        <h1 class="header-title">
+            Affecter ce formulaire aux professionnels de santé
+        </h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Tableau de bord</a></li>
+          
+                  <li class="breadcrumb-item "><a  routerLink="/admin/doctors">Professionnel de santé </a></li>
+          
+                <li class="breadcrumb-item active" aria-current="page">Formulaires Affectés Aux Patients</li>
+            </ol>
+        </nav>
+    </div>
+
+
+    <div class=" ml-auto">
+        <button routerLink="/admin/doctors"  mat-raised-button>Gérer les professionnels de santé</button>
+    </div>
+</div>
+
+
+
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-actions float-right">
+                <a href="#" class="mr-1">
+                    <i class="align-middle" data-feather="refresh-cw"></i>
+                </a>
+                <div class="d-inline-block dropdown show">
+                    <a href="#" data-toggle="dropdown" data-display="static">
+                        <i class="align-middle" data-feather="more-vertical"></i>
+                    </a>
+
+               
+                </div>
+            </div>
+            <h1 class="card-title mb-0">Tout les Formulaires Affectés par :  {{doctor?.name}}</h1>
+        </div>
+        <div class="card-body">
+            <table id="datatables-clients" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Titre de Formulaire</th>
+                       
+                    
+                        <th>Nom de Patient</th>
+                       
+                        <th>Etat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let f of affectations; let i = index">
+                        <td>{{i}}</td>
+                        <td>{{f.patients.forms[0].title}}</td>
+                        <td>{{f.patients.name}} </td>
+                        <td class="table-action row">
+                     
+                            <span *ngIf="f.dateRemplissage" class="badge rounded-pill bg-success">Finie</span>
+                            <span *ngIf="f.dateRemplissage == null" class="badge rounded-pill bg-warning">Pas encore</span>
+                      
+                        </td>
+                    </tr>
+         
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

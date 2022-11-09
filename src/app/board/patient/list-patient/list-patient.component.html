@@ -1,0 +1,96 @@
+<div class="header row">
+
+    <div class="">
+        <h1 class="header-title">
+            Patients
+        </h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Tableau de bord</a></li>
+
+                <li class="breadcrumb-item active" aria-current="page">Patients</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="ml-auto">
+        <button routerLink="/admin/patients/add" mat-raised-button>Créer un nouveau patient</button>
+    </div>
+</div>
+
+
+<div class="col-12 ">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-actions float-right">
+                <a href="#" class="mr-1">
+                    <i class="align-middle" data-feather="refresh-cw"></i>
+                </a>
+                <div class="d-inline-block dropdown show">
+                    <a href="#" data-toggle="dropdown" data-display="static">
+                        <i class="align-middle" data-feather="more-vertical"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <h5 class="card-title mb-0 col-10">Patients</h5>
+                <input type="text" placeholder="nom patient ..." (input)="filterItem($event.target.value)"
+                    class="col-2 form-control form-control-sm">
+                <div *ngIf="!allPatients" class="spinner-border  " role="status">
+                    <span class="visually-hidden"></span>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <table id="datatables-clients" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th *ngIf="screenWidth > 450">Adresse</th>
+                        <th *ngIf="screenWidth > 450">E-mail</th>
+                        <th *ngIf="screenWidth > 450">Télèphone</th>
+                        <th>Statut</th>
+                        <th>Option</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let patient of allPatients   |  paginate: { itemsPerPage: 8, currentPage: page,totalItem:totalLength }">
+                        <td><img [src]="patient.photo" width="32" height="32"
+                                class="rounded-circle my-n1" alt="Avatar"></td>
+                        <td>{{patient.name + ' ' + patient.lastname}} </td>
+                        <td *ngIf="screenWidth > 450">{{patient.adresse}}</td>
+                        <td *ngIf="screenWidth > 450">{{patient.email}}</td>
+                        <td *ngIf="screenWidth > 450">{{patient.tel}}</td>
+                        <td><span *ngIf="patient.account_state" class="badge badge-success">Active</span>
+
+                            <span *ngIf="!patient.account_state" class="badge badge-danger">Blocked</span>
+                        </td>
+                        <td class="table-action">
+
+                            <a [routerLink]="['/admin/patients/detail' , patient._id]"><i
+                                    class="align-middle fas fa-fw fa-eye mr-3"></i></a>
+
+                            <a (click)="open(patient._id , !patient.account_state , 2)"><i *ngIf="!patient.account_state"
+                                    class="align-middle fas fa-fw fa-lock mr-3"></i><i *ngIf="patient.account_state"
+                                    class="align-middle fas fa-fw fa-lock-open mr-3"></i></a>
+
+                            <a (click)="open(patient._id , !patient.account_state , 1)"><i
+                                    class="align-middle fas fa-fw fa-trash"></i></a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+       <!--      <div class="text-center mt-5"> 
+                <pagination-controls previousLabel="Précédent"
+                nextLabel="Suivant" (pageChange)="p = $event"></pagination-controls>
+            </div> -->
+            <div *ngIf="totalLength>8" class="text-center mt-5"> 
+                <pagination-controls class="my-pagination" previousLabel="Précédent"
+                nextLabel="Suivant" (pageChange)="page = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

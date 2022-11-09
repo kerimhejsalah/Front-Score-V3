@@ -1,0 +1,107 @@
+
+
+    <div class="header row">
+        <div class="">
+            <h1 class="header-title">
+                Affecter ce formulaire aux professionnels de santé
+            </h1>
+            
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink="/">Tableau de bord</a></li>
+              
+                      <li class="breadcrumb-item "><a  routerLink="/admin/doctors">Professionnel de santé </a></li>
+              
+                    <li class="breadcrumb-item active" aria-current="page">Affecter</li>
+                </ol>
+            </nav>
+        </div>
+
+
+        <div class="ml-auto">
+         <div class="row">
+            <div class="box">
+            
+                <i class="fa fa-search" aria-hidden="true"></i>
+            
+                <input type="text" placeholder="Nom formulaire ..." (input)="filterItem($event.target.value)"
+               >
+            
+            </div>
+        
+            <button style="background-color:transparent;border-color:transparent;"></button>
+        <button routerLink="/admin/doctors"  mat-raised-button>Gérer les professionnels de santé</button>
+         </div>
+
+          
+        </div>
+    </div>
+
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-actions float-right">
+                    <a href="#" class="mr-1">
+                        <i class="align-middle" data-feather="refresh-cw"></i>
+                    </a>
+                    <div class="d-inline-block dropdown show">
+                        <a href="#" data-toggle="dropdown" data-display="static">
+                            <i class="align-middle" data-feather="more-vertical"></i>
+                        </a>
+
+                   
+                    </div>
+                </div>
+                <h1 class="card-title mb-0">Affecter formulaire à {{doctor?.name}} :</h1>
+            </div>
+            <div class="card-body">
+                <table id="datatables-clients" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>titre</th>
+                           
+                        
+                            <th>date de création</th>
+                           
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let f of allFormsFil; let i = index">
+                            <td>{{i}}</td>
+                            <td>{{f.title}} </td>
+                           
+                          
+                            <td>{{f.created_date | date}}</td>
+ 
+
+                        
+                            <td class="table-action row">
+                                <button *ngIf="!checkIfFormAffectedToDoctor(f)" (click)="open(f._id , 1);" mat-raised-button >
+
+                                    <mat-icon style="font-size: 30px; margin: 4px;margin-bottom: 8px;">
+                                        send
+                                    </mat-icon>
+                                </button>       
+                                <div style="width:4px"></div>
+                                <button *ngIf="checkIfFormAffectedToDoctor(f)" (click)="open(f._id , 2); " mat-raised-button >
+
+
+                                    <mat-icon style="font-size: 30px; margin: 4px;margin-bottom: 8px;">
+                                        cancel_schedule_send
+                                    </mat-icon>
+                                </button>       
+                               
+                          
+                            </td>
+                        </tr>
+             
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+

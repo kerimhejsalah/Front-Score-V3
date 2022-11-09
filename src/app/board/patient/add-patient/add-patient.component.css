@@ -1,0 +1,23 @@
+.error{
+
+    border: 1px solid rgb(240, 76, 76);
+    color: rgb(240, 76, 76);
+}
+
+.card-to-add{
+    border: 10px dashed #dddddd;
+    border-radius: 7px;
+    background-color: transparent;
+    transform: scale(1.02); 
+    cursor: pointer;
+}
+
+.card-to-add:hover{
+   
+    transform: scale(1.05); 
+    cursor: pointer;
+}
+
+i{
+    color: #dddddd;
+}

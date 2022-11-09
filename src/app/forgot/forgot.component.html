@@ -1,0 +1,44 @@
+
+
+<main class="main h-100 w-100">
+    <div class="limiter">
+        <div *ngIf="!showForm" class="container-login100">
+            <div class="wrap-login100">
+            <h1>Lien de verification a été envoyer dans votre boite mail </h1>
+        </div> 
+        </div> 
+        <div *ngIf="showForm" class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <img src="assets/doc.png" alt="IMG">
+                </div>
+    
+                <form class="login100-form validate-form">
+                    <span class="login100-form-title">
+                        Modifier mot de passe
+                    </span>
+    
+                    <div class="form-group">
+                        <mat-form-field style="width: 100%;">
+                            <mat-label>Email</mat-label>
+                            <input [(ngModel)]="forgot.email" matInput type="email" name="email" placeholder="Taper votre e-mail" />
+                    
+                         
+                            <mat-icon matSuffix >email</mat-icon>
+                          </mat-form-field>
+                            <a style="margin-top: 22px;" routerLink="/login">Login</a>
+                         
+                    </div>
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" (click)="forgotPassword()" >
+                            Envoyer
+                        </button>
+                    </div>
+                
+                 
+                </form>
+            </div>
+        </div>
+    </div>
+    </main>
+    

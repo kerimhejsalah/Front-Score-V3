@@ -1,0 +1,76 @@
+<div class="no-click-backdrop"></div>
+<h2 mat-dialog-title>{{modalTitle}}</h2>
+<mat-dialog-content >
+    
+
+    <div class="card-body" style="width:100%">
+        <table id="datatables-clients" class="table table-striped" >
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>titre</th>
+                   
+                
+                    <th>date de création</th>
+                    <th>nombres formulaires affecter</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let f of allDoctors; let i = index">
+                  <ng-container *ngIf="f" >
+                    <td>{{i}}</td>
+                    <td> <span style="cursor: pointer;"  > {{f?.name}} {{f?.lastname}}</span>  </td>
+                   
+                  
+                    <td>{{f?.added_date | date}}</td>
+
+                    <td> <!--   <div *ngIf="spinerLoading" class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div> -->
+                       <h3 >{{getNumberAffecter(i)}}</h3></td>
+                
+                    <td class="table-action row">
+                        <mat-dialog-actions>
+                         <!--    <div *ngIf="spinerLoading" class="spinner-border" role="status">
+                                <span class="sr-only">Loading...</span>
+                              </div> -->
+                            <div class="row">
+                              
+                                <button  *ngIf="checkIfFormAffectedToDoctor(f)" (click)="getData(f,1)" mat-raised-button [mat-dialog-close]="true">
+
+                                    <mat-icon style="font-size: 30px; margin: 4px;margin-bottom: 8px;">
+                                        cancel_schedule_send
+                                    </mat-icon>
+                                </button>  
+                            </div>
+                     
+                        <div style="width:4px"></div>
+                        <div  class="row">
+                        <button  *ngIf="!checkIfFormAffectedToDoctor(f)" (click)="getData(f,2)"  mat-raised-button [mat-dialog-close]="true">
+
+                            <mat-icon style="font-size: 30px; margin: 4px;margin-bottom: 8px;">
+                                send
+                            </mat-icon>
+                           <!--  <mat-icon style="font-size: 30px; margin: 4px;margin-bottom: 8px;">
+                                cancel_schedule_send
+                            </mat-icon> -->
+                        </button>       
+                       </div>
+                          
+                    </mat-dialog-actions> 
+                  
+                    </td>
+                  </ng-container>
+                </tr>
+     
+            </tbody>
+        </table>
+    </div>
+</mat-dialog-content>
+
+
+<mat-dialog-actions>
+<button mat-button [mat-dialog-close]="false">NON</button>
+<button mat-button [mat-dialog-close]="false">OUI</button>
+</mat-dialog-actions>

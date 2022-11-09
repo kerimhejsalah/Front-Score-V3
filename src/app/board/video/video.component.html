@@ -1,0 +1,237 @@
+<script src="https://www.youtube.com/iframe_api"></script>
+
+    <div class="header row">
+        <div class="">
+            <h1 class="header-title">
+                Video
+            </h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink="/">Tableau de bord</a></li>
+                  
+                    <li class="breadcrumb-item active" aria-current="page">Video</li>
+                </ol>
+            </nav>
+        </div>
+
+
+   
+    </div>
+    <div class="row text-center mx-auto" style="margin-top: -30px;margin-bottom: 8px;">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="row text-center mx-auto">
+     <!--    <mat-button-toggle class="ml-auto mr-1"  (click)="selectedtab = 1"  mat-raised-button>Professionnels de santé</mat-button-toggle> -->
+        <mat-button-toggle (click)="selectedtab = 2"  mat-raised-button>Tableau de video</mat-button-toggle>
+    </mat-button-toggle-group>
+     <!--    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle value="bold">Bold</mat-button-toggle>
+            <mat-button-toggle value="italic">Italic</mat-button-toggle>
+            <mat-button-toggle value="underline">Underline</mat-button-toggle>
+          </mat-button-toggle-group> -->
+
+
+    </div>
+  
+    <div *ngIf="selectedtab === 1"  class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-actions float-right">
+                    <a href="#" class="mr-1">
+                        <i class="align-middle" data-feather="refresh-cw"></i>
+                    </a>
+                    <div class="d-inline-block dropdown show">
+                        <a href="#" data-toggle="dropdown" data-display="static">
+                            <i class="align-middle" data-feather="more-vertical"></i>
+                        </a>
+
+                 
+                    </div>
+                </div>
+                <h5 class="card-title mb-0">Ajouter Video</h5>
+            </div>
+            <div class="card-body">
+                <!--    <div *ngFor="let f of ListeDossier; let i = index">
+                       <h1 > {{f.name}}</h1>
+                       
+                   </div> -->
+                   <table class="table">
+                       <thead>
+                         <tr>
+                           <th scope="col">#</th>
+                           <th scope="col">URL YOUTUBE</th>
+                           <th scope="col">TITLE</th>
+
+                           <th scope="col">DESC</th>
+                           <th scope="col">ROLE</th>
+                         
+                         </tr>
+                       </thead>
+                       <tbody>
+                         <tr >
+                           <th scope="row" >     1 </th>
+                           <td >     <input [(ngModel)]="video.url" type="text"class="form-control"  placeholder="url">  </td>
+                           <td >     <input [(ngModel)]="video.title" type="text"class="form-control"  placeholder="title">  </td>
+                           <td >     <input [(ngModel)]="video.desc" type="text"class="form-control"  placeholder="desc">  </td>
+                         <!--   <td >  
+                               <div style="float: left;" class="ml-auto">  
+                               <button  mat-raised-button >
+        
+                                   <mat-icon style="font-size: 30px; margin: 4px;margin-bottom: 8px;">
+                                       send
+                                   </mat-icon>
+                               </button></div>   </td> -->
+                           <td >      <div style="float: left;" class="ml-auto">
+                               <a  style="cursor: pointer;" ><!-- <i (click)="roleVideo(1)" style="margin-left: 8px;font-size: 20px;" class="align-middle fas fa-fw fa-pen " ></i> -->
+                                <i (click)="roleVideo(1)" style="margin-left: 8px;font-size: 20px;"   class=" align-middle  fa fa-user-md" ></i></a>
+           
+                             
+                                           
+                               <a style="cursor: pointer;"><!-- <i (click)="roleVideo(2)" style="margin-left: 8px;font-size: 20px;"  class="align-middle fas fa-fw fa-trash" ></i> -->
+                                <i  (click)="roleVideo(2)" style="margin-left: 8px;font-size: 20px;"  class=" align-middle  fa fa-user-injured" ></i></a>
+                           </div></td>
+                     
+                         </tr>
+                      
+                       </tbody>
+                     </table>
+                <!--    <div class="card-body">
+                       <input type="text"class="form-control"  placeholder="Nom">  
+                   </div> -->
+                
+                 <div class="card-body">
+                       <button  (click)="addVideo()"  mat-raised-button class="ml-auto">
+                           <mat-icon>add</mat-icon>
+                           Ajouter Video
+                       </button>
+                   </div> 
+               </div>
+        </div>
+    </div>
+    <div class="col-lg-12  d-flex">
+        <div class="w-100">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card" >
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mt-0">
+                                    <h5 class="card-title">Professionnel de santé</h5>
+                                </div>
+
+                                <div class="col-auto">
+                                    <div class="avatar">
+                                        <div class="avatar-title rounded-circle bg-primary-dark text-center">
+                                            <i  class=" align-middle  fa fa-user-md" ></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div  >
+                                <table  class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Video</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Desc</th>
+                                        <th scope="col">Action</th>
+                                        <th scope="col">Supprimer</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let f of tableVideod; let i = index">
+                                        <th scope="row">{{i}}</th>
+                                        <td><youtube-player
+                                            [videoId]="f?.url"
+                                            suggestedQuality="highres"
+                                            [height]="150"
+                                            [width]="180"
+                                            [startSeconds]="4"
+                                            [endSeconds]="300"
+                                            audio='true'
+                                          >
+                                          </youtube-player>
+                                          
+                                          </td>
+                                        <td *ngIf="!f.etat" style="color: red;">{{f?.title}}</td>
+                                        <td *ngIf="f.etat" style="color: rgb(0, 255, 76);">{{f?.title}}</td>
+                                        <td>{{f?.desc}}</td>
+                                        <td> <mat-icon (click)="affectVideo(f?._id,f?.role)" style="cursor: pointer;">done</mat-icon><mat-icon (click)="deleteAffectVideo(f?._id,f?.role)" style="cursor: pointer;">clear</mat-icon></td>
+                                       <td>  <a style="cursor: pointer;"  (click)="deleteVideo(f?._id,f?.role)" ><i style="margin-left: 8px;font-size: 20px;"  class="align-middle fas fa-fw fa-trash" ></i></a></td>
+                                    </tr>
+                                    
+                                    </tbody>
+                                  </table>
+
+                            </div>
+                           
+                        </div>
+                    </div>
+                  
+                </div>
+
+              <!--   <p>
+                    Image/Video Preview
+                  </p>
+                  
+                  <img [src]="url2" *ngIf="format==='image' && url2" height="200"> <br/>
+                  <video [src]="url2" *ngIf="format==='video' && url2" height="200" controls></video> <br/>
+                  <input type='file' (change)="onSelectFile($event)" /> -->
+                <div class="col-lg-6">
+                    <div class="card" style="cursor: pointer;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mt-0">
+                                    <h5 class="card-title">Patients</h5>
+                                </div>
+
+                                <div class="col-auto">
+                                    <div class="avatar">
+                                        <div class="avatar-title rounded-circle bg-primary-dark text-center">
+                                            <i  class=" align-middle  fa fa-user-injured" ></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table  class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Video</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Desc</th>
+                                    <th scope="col">Action</th>
+                                    <th scope="col">Supprimer</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let f of tableVideo; let i = index">
+                                    <th scope="row">{{i}}</th>
+                                    <td><youtube-player
+                                        [videoId]="f?.url"
+                                        suggestedQuality="highres"
+                                        [height]="150"
+                                        [width]="180"
+                                        [startSeconds]="4"
+                                        [endSeconds]="300"
+                                      >
+                                      </youtube-player>
+                                      </td>
+                                      <td *ngIf="!f.etat" style="color: red;">{{f?.title}}</td>
+                                      <td *ngIf="f.etat" style="color: rgb(0, 255, 76);">{{f?.title}}</td>
+                                    <td>{{f?.desc}}</td>
+                                    <td><mat-icon (click)="affectVideo(f?._id,f?.role)" style="cursor: pointer;">done</mat-icon><mat-icon (click)="deleteAffectVideo(f?._id,f?.role)"  style="cursor: pointer;">clear</mat-icon></td>
+                                    <td>  <a style="cursor: pointer;" (click)="deleteVideo(f?._id,f?.role)"><i style="margin-left: 8px;font-size: 20px;"  class="align-middle fas fa-fw fa-trash" ></i></a></td>
+                                </tr>
+                                
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+               
+                </div>
+              
+         
+          
+            </div>
+        </div>
+    </div>

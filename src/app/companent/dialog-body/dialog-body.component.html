@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    
+    <form  [formGroup]="addmore">
+    <div class="card">
+      <div class="card-header text-center">Range Q({{data.nameRange}})</div>
+      <h3 *ngIf="!errorRange" class="card-header text-center" style="color: red;">ERROR LIGNE {{mesgError}}</h3>
+      <button *ngIf="rangeType==''" (click)="typeRange()" class="btn btn-primary" style="width: 10%;">%</button>
+      <button *ngIf="rangeType=='%'" (click)="typeRangeclose()" class="btn btn-danger" style="width: 10%;">%</button>
+      <div class="card-body">
+  
+  
+      
+          <!-- <form [formGroup]="addmore" #indentAddForm=ngForm  (ngSubmit)="onSubmit()" > -->
+                  <div   class="row">
+                    <mat-dialog-content>
+                    <div class="col-sm-12 table-responsive" formArrayName="itemRows">
+                      <table  class="table">
+                        <thead>
+                          <tr>
+                            <th style="white-space: nowrap;padding-right: 4em;float:center"><span class="required-field"></span>Step </th>
+                            <th style="white-space: nowrap;padding-right: 4em;float:center">Desc </th>
+                          
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr  *ngFor="let itemrow of addmore.controls.itemRows['controls']; let i=index"  [formGroupName]="i">
+  
+                            <td style="white-space: nowrap;"> <input  id="value{{i}}" formControlName="value" class="form-control" type="number" ></td>
+                           <!-- <td style="white-space: nowrap;"> <input readonly id="learn{{i}}" formControlName="learn" class="form-control"></td> -->
+                            <!-- <td> <input formControlName="bf_stock" readonly id="bfStock{{i}}" class="form-control reset"></td> -->
+                             <td> <textarea id="legend{{i}}" formControlName="legend" class="form-control reset"></textarea></td>
+                   
+                            <td> <button *ngIf="addmore.controls.itemRows.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger"><i class="fa fa-minus-circle" aria-hidden="true"></i></button></td>
+                          </tr>
+                        </tbody>
+                        <tfoot>
+                          <tr><td> <button type="button" (click)="addNewRow()" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></button></td></tr>
+                        </tfoot>
+                      </table>
+                  </div>
+                </mat-dialog-content>
+                </div>
+               
+                <!-- </form> -->
+  
+      </div>
+      <div class="card-footer" >
+         <button mat-raised-button (click)="closeDialog()" color="primary" >créer</button>
+         <button mat-raised-button (click)="cancelDialog()" color="primary">Exit</button>
+      </div>
+    </div>
+  </form>
+  
+  </div>

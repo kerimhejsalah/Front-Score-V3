@@ -1,0 +1,147 @@
+<div class="row">
+
+    <div class="header col-9">
+        <h1 class="header-title">
+            patients
+        </h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Tableau de bord</a></li>
+              
+                <li class="breadcrumb-item "><a  routerLink="/admin/patients">Patients </a></li>
+              
+                <li class="breadcrumb-item active" aria-current="page">{{patient?.name + ' ' + patient?.lastname}}</li>
+            </ol>
+        </nav>
+    </div>
+
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-actions float-right">
+                    <a href="#" class="mr-1">
+                        <i class="align-middle" data-feather="refresh-cw"></i>
+                    </a>
+                    <div class="d-inline-block dropdown show">
+                        <a href="#" data-toggle="dropdown" data-display="static">
+                            <i class="align-middle" data-feather="more-vertical"></i>
+                        </a>
+
+
+                    </div>
+                </div>
+                <div style="float: right;" class="ml-auto">
+                    <a (click)="updateToggle = !updateToggle" ><i style="margin-left: 8px;font-size: 20px;" class="align-middle fas fa-fw fa-pen "></i></a>
+
+                  
+                                
+                    <a (click)="open(1)" ><i style="margin-left: 8px;font-size: 20px;"  class="align-middle fas fa-fw fa-trash" ></i></a>
+                </div>
+                <h1 style="color: #153d77; font-weight: bold;" class="card-title mb-0">{{patient?.name + ' ' + patient?.lastname}}</h1>
+
+     
+            </div>
+            <div class="card-body">
+                <div  class="row no-gutters">
+                    <div class="col-sm-3 col-xl-12 text-center">
+                        <img [src]="patient?.photo" width="94" height="94" class="rounded-circle mt-2">
+                        <label for="upt">
+                        <a (click)="updateTogglePhoto = !updateTogglePhoto" ><i style="margin-left: 8px;font-size: 20px;margin-top: -55px;" class="align-middle fas fa-fw fa-pen "></i></a>
+
+                        </label>
+                        <br>
+                        <input #fileInput (change)="handleFileInput($event.target.files)"  style="display: none;" type="file" id="upt">
+                        <button (click)="updatePhoto()" *ngIf="url" class="btn btn-primary mt-2" style="margin-left: -35px;" >Enregistrer 
+                            <div   *ngIf="showSpinnerUpdatePhoto" class="spinner-border  " role="status">
+                                <span class="visually-hidden"></span>
+                              </div>
+                        </button>
+                    </div>
+                    <div class="col-sm-9 col-xl-12 col-xxl-8">
+                        <strong>A propos </strong>
+                       
+                    </div>
+                </div>
+
+
+
+                <table   class="table table-sm my-2">
+                    <tbody>
+                        <tr>
+                            <th>Nom</th>
+                            <td *ngIf="!updateToggle">{{patient?.name }}</td>
+                            <td *ngIf="updateToggle"><input [(ngModel)]="patient.name" type="text" class="form-control"></td>
+                        </tr>
+
+                        <tr>
+                            <th>Prenom</th>
+                            <td *ngIf="!updateToggle">{{ patient?.lastname}}</td>
+                            <td *ngIf="updateToggle"><input [(ngModel)]="patient.lastname" type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <th>E-mail</th>
+                            <td *ngIf="!updateToggle">{{ patient?.email}}</td>
+                            <td *ngIf="updateToggle"><input [(ngModel)]="patient.email" type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <th>Date de naissance</th>
+                            <td *ngIf="!updateToggle">{{ patient?.birthday}}</td>
+                            <td *ngIf="updateToggle"><input [(ngModel)]="patient.birthday" type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <th>Adresse</th>
+                            <td *ngIf="!updateToggle">{{ patient?.adresse}}</td>
+                            <td *ngIf="updateToggle"><input [(ngModel)]="patient.adresse" type="text" class="form-control"></td>
+   
+                        </tr>
+                        <tr>
+                            <th>Télèphone</th>
+                            <td *ngIf="!updateToggle">{{ patient?.tel}}</td>
+                            <td *ngIf="updateToggle"><input [(ngModel)]="patient.tel" type="text" class="form-control"></td>
+   
+                        </tr>
+                        <tr>
+                            <th>SSN</th>
+                            <td *ngIf="!updateToggle">{{ patient?.ssn}}</td>
+                            <td *ngIf="updateToggle"><input [(ngModel)]="patient.ssn" type="text" class="form-control"></td>
+   
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+
+                            <td><span *ngIf="patient?.account_state" (click)="updateToggle ? patient.account_state = !patient.account_state : null" class="badge badge-success">Active</span>
+                            
+                                <span *ngIf="!patient?.account_state" (click)="updateToggle ? patient.account_state = !patient.account_state : null" class="badge badge-danger">Blocked</span>
+
+                          
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Consontement</th>
+
+                            <td>  
+                                 <span *ngIf="consentementValid">Ce patient créé par un professionnel de la santé</span>
+                                 <div  *ngIf="!consentementValid" >
+                      
+                                    <img  [src]="patient?.consontement" width="120" height="120" class="rounded-circle mt-2">
+                                    <label for="upt">
+                                    <a (click)="downloadImage(patient?.consontement)" ><button style="background-color: transparent;border-color: transparent;"><mat-icon>cloud_download</mat-icon></button> </a>
+            
+                                    </label>
+                               
+                                 
+                              
+                            </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button  (click)="open(2)"  *ngIf="updateToggle" style="margin-right: 0px;margin-left: 80%;" class="mt-5" mat-flat-button color="primary">Enregistrer les modifications</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>

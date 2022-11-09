@@ -1,0 +1,78 @@
+<div class="col-12">
+    <div *ngIf="!statusAbonement"  class="card" style=" background-color: #ddffdd;">
+  <!--       <div class="card-header">
+            <div class="card-actions float-right">
+                <a href="#" class="mr-1">
+                    <i class="align-middle" data-feather="refresh-cw"></i>
+                </a>
+                <div class="d-inline-block dropdown show">
+                    <a href="#" data-toggle="dropdown" data-display="static">
+                        <i class="align-middle" data-feather="more-vertical"></i>
+                    </a>
+
+            
+                </div>
+            </div>
+            <h1 class="card-title mb-0">Formulaires affectées à {{doctor?.name}} :</h1>
+        </div> -->
+        <div class="card-body">
+            <div class="col-sm-3 col-xl-12  text-center">
+                      
+                <div style=" background-color: #ddffdd;"><h1>Abonnement valide, Abonnement valable jusqu'à {{dateFin || date}} </h1></div>
+          
+        </div>
+          <!--   <table id="datatables-clients" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>titre</th>
+                       
+                    
+                        <th>date de création</th>
+                       
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let f of allForms; let i = index">
+                      <ng-container *ngIf="f" >
+                        <td>{{i}}</td>
+                        <td>{{f?.title}} </td>
+                       
+                      
+                        <td>{{f?.created_date | date}}</td>
+
+
+                    
+                        <td class="table-action row">
+                          
+                            <div style="width:4px"></div>
+                            <button (click)="open(f._id , 2); " mat-raised-button >
+
+
+                                <mat-icon style="font-size: 30px; margin: 4px;margin-bottom: 8px;">
+                                    cancel_schedule_send
+                                </mat-icon>
+                            </button>       
+                           
+                      
+                        </td>
+                      </ng-container>
+                    </tr>
+         
+                </tbody>
+            </table> -->
+        </div>
+    </div>
+    <div *ngIf="statusAbonement"  class="card" style=" background-color: #ffdddd;">
+
+              <div class="card-body">
+                  <div class="col-sm-3 col-xl-12  text-center">
+                            
+                      <div ><h1>Abonnement épuisé </h1></div>
+                
+              </div>
+        
+              </div>
+          </div>
+</div>

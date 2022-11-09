@@ -1,0 +1,6 @@
+.fas:hover{
+    cursor: pointer;
+}
+.my-pagination /deep/ .ngx-pagination .current {
+    background: #153d77;
+}

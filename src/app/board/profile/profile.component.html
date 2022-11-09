@@ -1,0 +1,87 @@
+<div class="row">
+
+    <div class="header col-9">
+        <h1 class="header-title">
+            Administrateur
+        </h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Tableau de bord</a></li>
+              
+                <li class="breadcrumb-item active" aria-current="page">Profile</li>
+            </ol>
+        </nav>
+    </div>
+
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+           
+                <div style="float: right;" class="ml-auto">
+                    <a (click)="updateToggle = !updateToggle" ><i style="margin-left: 8px;font-size: 20px;" class="align-middle fas fa-fw fa-pen "></i></a>
+
+                  
+                                
+                </div>
+                <h1  *ngIf="user" style="color: #153d77; font-weight: bold;" class="card-title mb-0">{{admin.name + ' ' + admin.lastname}}</h1>
+
+     
+            </div>
+            <div class="card-body">
+                <div *ngIf="!showSpinner" class="row no-gutters">
+                    <div class="col-sm-3 col-xl-12 text-center">
+                        <img *ngIf="user" [src]="admin.photo" width="94" height="94" class="rounded-circle mt-2" alt="Scores admin">
+                        <label for="upt">
+                        <a (click)="updateTogglePhoto = !updateTogglePhoto" ><i style="margin-left: 8px;font-size: 20px;margin-top: -55px;" class="align-middle fas fa-fw fa-pen "></i></a>
+
+                        </label>
+                        <br>
+                        <input #fileInput (change)="handleFileInput($event.target.files)"  style="display: none;" type="file" id="upt">
+                        <button (click)="updatePhoto()" *ngIf="url" class="btn btn-primary mt-2" style="margin-left: -35px;" >Enregistrer 
+                            <div   *ngIf="showSpinnerUpdatePhoto" class="spinner-border  " role="status">
+                                <span class="visually-hidden"></span>
+                              </div>
+                        </button>
+                    </div>
+                    <div class="col-sm-9 col-xl-12 col-xxl-8">
+                        <strong>A propos </strong>
+                       
+                    </div>
+                </div>
+
+                <div  style="margin: auto; margin-top: 30px; margin-bottom: 30px;" *ngIf="showSpinner" class="spinner-border  " role="status">
+                    <span class="visually-hidden"></span>
+                  </div>
+
+                <table  *ngIf="!showSpinner" class="table table-sm my-2">
+                    <tbody *ngIf="user">
+                        <tr>
+                            <th>Nom</th>
+                            <td *ngIf="!updateToggle">{{admin.name }}</td>
+                            <td *ngIf="updateToggle"><input [(ngModel)]="admin.name" type="text" class="form-control"></td>
+                        </tr>
+
+                        <tr>
+                            <th>Prenom</th>
+                            <td *ngIf="!updateToggle">{{ admin.lastname}}</td>
+                            <td *ngIf="updateToggle"><input [(ngModel)]="admin.lastname" type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <th>E-mail</th>
+                            <td *ngIf="!updateToggle">{{ admin.email}}</td>
+                            <td *ngIf="updateToggle"><input [(ngModel)]="admin.email" type="text" class="form-control"></td>
+                        </tr>
+                
+                 
+                
+                    </tbody>
+                </table>
+
+                <button  (click)="open(2)"  *ngIf="updateToggle" style="margin-right: 0px;margin-left: 85%;" class="mt-5" mat-flat-button color="primary">Enregistrer les modifications</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>

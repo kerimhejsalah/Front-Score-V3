@@ -1,0 +1,93 @@
+
+
+<h2 mat-dialog-title>Ajouter les prix total des Formulaires par mois</h2>
+<mat-dialog-content [formGroup]="form" > 
+  
+    <mat-form-field style="padding-right: 5px;">
+        <input matInput
+                placeholder="Title"
+               formControlName="title"
+               [value]="title">
+    </mat-form-field>
+     
+    <mat-form-field style="padding-right: 5px;">
+        <input matInput
+                placeholder="Prix"
+                formControlName="prix"
+                [value]="prix">
+    </mat-form-field>
+<!--     <mat-form-field style="padding-right: 5px;">
+        <input matInput
+                placeholder="Currency"
+               formControlName="currency"
+               [value]="currency">
+    </mat-form-field> -->
+    <mat-form-field style="padding-right: 5px;padding-left: 55px;">
+        <input matInput
+                placeholder="Desc"
+               formControlName="desc"
+               [value]="desc">
+    </mat-form-field> 
+    <mat-form-field style="padding-right: 5px;">
+        <mat-label>Currency</mat-label>
+        
+        <select matNativeControl required (change)="change2($event.target.value)" [value]="currency">
+          <option *ngFor="let c of currencyPaypal" [value]="c.value" >
+            {{c.viewValue}}
+          </option>
+        </select>
+      </mat-form-field>
+   <!--  <mat-icon style="padding-right: 25px;cursor: pointer;" (click)="save()">done</mat-icon> -->
+</mat-dialog-content>
+<h1 *ngIf="validData" style="color: red;">Veuillez remplir toutes les sections du formulaire</h1>
+<mat-dialog-content [formGroup]="form2" > 
+      <br>
+      <br>
+      <h2 mat-dialog-title>Ajouter les prix total des Formulaires par an</h2>
+      <br>
+      <br>
+      <mat-form-field style="padding-right: 5px;">
+        <input matInput
+                placeholder="Title"
+               formControlName="title2"
+               [value]="title2">
+    </mat-form-field>
+  
+    <mat-form-field style="padding-right: 5px;">
+        <input matInput
+                placeholder="Prix"
+                formControlName="prix2"
+                [value]="prix2">
+    </mat-form-field>
+<!--     <mat-form-field style="padding-right: 5px;">
+        <input matInput
+                placeholder="Currency"
+               formControlName="currency2"
+               [value]="currency2">
+    </mat-form-field> -->
+    <mat-form-field style="padding-right: 5px;padding-left: 55px;">
+        <input matInput
+                placeholder="Desc"
+               formControlName="desc2"
+               [value]="desc2">
+    </mat-form-field>
+    <mat-form-field style="padding-right: 5px;">
+      <mat-label>Currency</mat-label>
+      
+      <select matNativeControl required (change)="change($event.target.value)" [value]="currency2">
+        <option *ngFor="let c of currencyPaypal" [value]="c.value" >
+          {{c.viewValue}}
+        </option>
+      </select>
+    </mat-form-field>
+ <!--    <mat-icon style="padding-right: 25px;cursor: pointer;" (click)="saveAn()">done</mat-icon> -->
+ 
+
+</mat-dialog-content>
+<h1 *ngIf="validData2" style="color: red;">Veuillez remplir toutes les sections du formulaire</h1>
+<mat-dialog-actions style="align-items: center;">
+   
+    <button mat-button class="mat-raised-button mat-primary" (click)="saveAll()" >Enregistrer</button> 
+
+    <button mat-raised-button color="warn"  (click)="close()">Quitter</button>
+</mat-dialog-actions>

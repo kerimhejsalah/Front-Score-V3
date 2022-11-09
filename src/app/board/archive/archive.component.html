@@ -1,0 +1,231 @@
+
+
+    <div class="header row">
+        <div class="">
+            <h1 class="header-title">
+                Archives
+            </h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink="/">Tableau de bord</a></li>
+                  
+                    <li class="breadcrumb-item active" aria-current="page">Archives</li>
+                </ol>
+            </nav>
+        </div>
+
+
+   
+    </div>
+
+
+
+
+    <div class="row text-center mx-auto" style="margin-top: -30px;margin-bottom: 8px;">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="row text-center mx-auto">
+        <mat-button-toggle class="ml-auto mr-1"  (click)="selectedtab = 1"  mat-raised-button>Professionnels de santé</mat-button-toggle>
+        <mat-button-toggle (click)="selectedtab = 2"  mat-raised-button>Patients</mat-button-toggle>
+        <mat-button-toggle  class="mr-auto ml-1" (click)="selectedtab = 3"  mat-raised-button>Formulaires</mat-button-toggle>
+    </mat-button-toggle-group>
+     <!--    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle value="bold">Bold</mat-button-toggle>
+            <mat-button-toggle value="italic">Italic</mat-button-toggle>
+            <mat-button-toggle value="underline">Underline</mat-button-toggle>
+          </mat-button-toggle-group> -->
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <div *ngIf="selectedtab === 1" class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-actions float-right">
+                    <a href="#" class="mr-1">
+                        <i class="align-middle" data-feather="refresh-cw"></i>
+                    </a>
+                    <div class="d-inline-block dropdown show">
+                        <a href="#" data-toggle="dropdown" data-display="static">
+                            <i class="align-middle" data-feather="more-vertical"></i>
+                        </a>
+
+                 
+                    </div>
+                </div>
+                <h5 class="card-title mb-0">Archive des professionnels de santé</h5>
+            </div>
+            <div class="card-body">
+                <table id="datatables-clients" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nom</th>
+                            <th *ngIf="screenWidth > 450">Adresse</th>
+                            <th *ngIf="screenWidth > 450">E-mail</th>
+                            <th *ngIf="screenWidth > 450">Télèphone</th>
+                           
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let doctor of doctors |  paginate: { itemsPerPage: 8, currentPage: page,totalItem:totalLengthdoctor }">
+                            <td><img [src]=" path.url + 'getfile/' + doctor.photo" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
+                            <td>{{doctor.name + ' ' + doctor.lastname}} </td>
+                            <td *ngIf="screenWidth > 450">{{doctor.adresse}}</td>
+                            <td *ngIf="screenWidth > 450">{{doctor.email}}</td>
+                            <td *ngIf="screenWidth > 450">{{doctor.tel}}</td>
+                           
+                            <td class="table-action">
+                               
+                                <a (click)="open(doctor._id, 1)"><i class="align-middle fas fa-fw fa-trash-restore mr-3" style="font-size: 24px;"></i></a>
+                                <a (click)="open(doctor._id, 11)"><i class="align-middle fas fa-fw fa-trash mr-3" style="font-size: 24px;"></i></a>
+                           
+                              
+                            </td>
+                        </tr>
+             
+                    </tbody>
+                </table>
+
+            <!--     <div class="text-center mt-5" *ngIf="doctors?.length > 0"> 
+                    <pagination-controls previousLabel="Précédent"
+                    nextLabel="Suivant" (pageChange)="p = $event"></pagination-controls>
+                </div> -->
+                <div  *ngIf="doctors?.length > 0" class="text-center mt-5"> 
+                    <pagination-controls class="my-pagination" previousLabel="Précédent"
+                    nextLabel="Suivant" (pageChange)="page = $event"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="selectedtab === 2" class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-actions float-right">
+                    <a href="#" class="mr-1">
+                        <i class="align-middle" data-feather="refresh-cw"></i>
+                    </a>
+                    <div class="d-inline-block dropdown show">
+                        <a href="#" data-toggle="dropdown" data-display="static">
+                            <i class="align-middle" data-feather="more-vertical"></i>
+                        </a>
+
+                  
+                    </div>
+                </div>
+                <h5 class="card-title mb-0">Archive des patients</h5>
+            </div>
+            <div class="card-body">
+                <table id="datatables-clients" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nom</th>
+                            <th *ngIf="screenWidth > 450">Adresse</th>
+                            <th *ngIf="screenWidth > 450">E-mail</th>
+                            <th *ngIf="screenWidth > 450">Télèphone</th>
+                           
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let patient of patients |  paginate: { itemsPerPage: 8, currentPage: page,totalItem:totalLengthpatient }">
+                            <td><img [src]=" path.url + 'getfile/' + patient.photo" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
+                            <td>{{patient.name + ' ' + patient.lastname}} </td>
+                            <td *ngIf="screenWidth > 450">{{patient.adresse}}</td>
+                            <td *ngIf="screenWidth > 450">{{patient.email}}</td>
+                            <td *ngIf="screenWidth > 450">{{patient.tel}}</td>
+                           
+                            <td class="table-action">
+                               
+                                <a (click)="open(patient._id, 2)"><i class="align-middle fas fa-fw fa-trash-restore mr-3" style="font-size: 24px;"></i></a>
+                                <a (click)="open(patient._id, 22)"><i class="align-middle fas fa-fw fa-trash mr-3" style="font-size: 24px;"></i></a>
+                           
+                              
+                            </td>
+                        </tr>
+             
+                    </tbody>
+                </table>
+            <!--     <div class="text-center mt-5" *ngIf="patients?.length > 0"> 
+                    <pagination-controls previousLabel="Précédent"
+                    nextLabel="Suivant" (pageChange)="p = $event"></pagination-controls>
+                </div> -->
+                <div *ngIf="patients?.length > 0" class="text-center mt-5"> 
+                    <pagination-controls class="my-pagination" previousLabel="Précédent"
+                    nextLabel="Suivant" (pageChange)="page = $event"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="selectedtab === 3" class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-actions float-right">
+                    <a href="#" class="mr-1">
+                        <i class="align-middle" data-feather="refresh-cw"></i>
+                    </a>
+                    <div class="d-inline-block dropdown show">
+                        <a href="#" data-toggle="dropdown" data-display="static">
+                            <i class="align-middle" data-feather="more-vertical"></i>
+                        </a>
+
+                   
+                    </div>
+                </div>
+                <h5 class="card-title mb-0">Archive des formulaires</h5>
+            </div>
+            <div class="card-body">
+                <table id="datatables-clients" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                           
+                            <th>Titre</th>
+                           
+                        
+                            <th>Date de création</th>
+                           
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let f of forms |  paginate: { itemsPerPage: 8, currentPage: page,totalItem:totalLengthformulaire }">
+                            
+                            <td>{{f.title}} </td>
+                           
+                          
+                            <td>{{f.created_date | date}}</td>
+ 
+
+                        
+                            <td class="table-action row">
+                              
+                                <a (click)="open(f._id, 3)"><i class="align-middle fas fa-fw fa-trash-restore mr-3" style="font-size: 24px;"></i></a>
+                                <a (click)="open(f._id, 33)"><i class="align-middle fas fa-fw fa-trash mr-3" style="font-size: 24px;"></i></a>
+                            
+                               
+                          
+                            </td>
+                        </tr>
+             
+                    </tbody>
+                </table>
+             <!--    <div class="text-center mt-5" *ngIf="forms?.length > 0"> 
+                    <pagination-controls previousLabel="Précédent"
+                    nextLabel="Suivant" (pageChange)="p = $event"></pagination-controls>
+                </div> -->
+                <div  *ngIf="forms?.length > 0" class="text-center mt-5"> 
+                    <pagination-controls class="my-pagination" previousLabel="Précédent"
+                    nextLabel="Suivant" (pageChange)="page = $event"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>

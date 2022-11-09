@@ -1,0 +1,136 @@
+<div class="wrapper" >
+ 
+    <nav *ngIf="layout.toggler"  class="sidebar " style="background: linear-gradient(#2c5085, #2c5085);">
+        <h1 class="sidebar-brand" href="index.html"style="background: linear-gradient(#153d77, #2c5085);">
+            <svg>
+                <use xlink:href="#ion-ios-pulse-strong"></use>
+            </svg>
+            SCORES
+        </h1>
+        <div class="sidebar-content" >
+            <div class="sidebar-user" >
+                <img routerLink="/admin/profile" [src]="user.photo" class="img-fluid rounded-circle mb-2" alt="" />
+                <div routerLink="/admin/profile" class="font-weight-bold">{{user.name + ' ' + user.lastname}}</div>
+           </div>
+    
+            <ul class="sidebar-nav" >
+           
+        
+    
+                <li class="sidebar-header">
+                    Menu
+                </li>
+             
+                <li class="sidebar-item">
+                    <a routerLink="/admin"  class="sidebar-link collapsed">
+                        <i class="align-middle mr-2 fas fa-fw fa-chart-pie"></i> <span class="align-middle">Statistiques</span>
+                      
+                    </a>
+                  
+                </li>
+
+
+                <li class="sidebar-item">
+                    <a routerLink="/admin/forms"  class="sidebar-link collapsed">
+                        <i class="align-middle mr-2 fas fa-fw fa-align-left"></i> <span class="align-middle">Formulaires</span>
+                    </a>
+         
+                </li>
+    
+                <li class="sidebar-item">
+                    <a routerLink="/admin/dossier"  class="sidebar-link collapsed">
+                        <i class="align-middle mr-2 fas fa-folder fa-align-left"></i> <span class="align-middle">Dossiers</span>
+                    </a>
+         
+                </li>
+    
+                <li class="sidebar-item">
+                    <a routerLink="/admin/doctors"  class="sidebar-link collapsed">
+                        <i style="color: #153d77;" class="align-middle mr-2 fa fa-user-md"></i>
+                   
+                        <span class="align-middle">Professionnel de santé</span>
+                    </a>
+         
+                </li>
+        
+
+
+                <li class="sidebar-item">
+                    <a routerLink="/admin/patients"  class="sidebar-link collapsed">
+                        <i style="color: #153d77;" class="align-middle mr-2 fa fa-user-injured"></i>
+                   
+                        <span class="align-middle">Patients</span>
+                    </a>
+         
+                </li>
+
+
+                <li class="sidebar-item">
+                    <a routerLink="/admin/archive"  class="sidebar-link collapsed">
+                        <i style="color: #153d77;" class="align-middle mr-2 fa fa-file-archive"></i>
+                   
+                        <span class="align-middle">Archives</span>
+                    </a>
+         
+                </li>
+                <li class="sidebar-item">
+                    <a routerLink="/admin/video"  class="sidebar-link collapsed">
+                      <!--   <i style="color: #153d77;" class="align-middle mr-2 fa fa-file-archive"></i> -->
+                      <i style="color: #153d77;" class="align-middle mr-2 fa fa-fw fa-film" aria-hidden="true"></i>
+                        <span class="align-middle">Vidéo</span>
+                    </a>
+         
+                </li>
+                <li class="sidebar-item">
+                    <a (click)="openDialog()" class="sidebar-link collapsed">
+                    <!--     <i style="color: #153d77;" class="align-middle mr-2 fa fa-file-archive"></i> -->
+                        <i style="color: #153d77;" class="align-middle mr-2 fa fa-fw fa-credit-card" aria-hidden="true"></i>
+                        <span class="align-middle">Prix</span>
+                    </a>
+          
+                </li>
+                <li class="sidebar-item">
+                    <a routerLink="/admin/history" class="sidebar-link collapsed">
+                        <!-- i style="color: #153d77;" class="align-middle mr-2 fa fa-file-archive"></i> -->
+                        <i style="color: #153d77;" class="align-middle mr-2 fa fa-history" aria-hidden="true"></i>
+                        <span class="align-middle">Historique Achat</span>
+                    </a>
+          
+                </li>
+            <!--     <li class="sidebar-item">
+                    <a href="#"(click)="_auth.logoutUser" class="sidebar-link collapsed">
+                        <i style="color: #153d77;" class="align-middle mr-2 fa fa-file-archive"></i>
+                   
+                        <span class="align-middle">Déconnexion</span>
+                    </a>
+         
+                </li> -->
+                <li class="sidebar-item" style="padding-top: 100%;">
+                    <a class="sidebar-link collapsed" (click)="_auth.logoutUser()"  id="userDropdown" data-toggle="dropdown">
+                        <i class="align-middle fas fa-cog"></i>Déconnexion
+                    </a>
+                 <!--    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                   
+                        <a class="dropdown-item" (click)="_auth.logoutUser()"><i class="align-middle mr-1 fas fa-fw fa-arrow-alt-circle-right"></i> Déconnexion</a>
+                    </div> -->
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <div class="main" >
+        <app-header ></app-header>
+
+
+        <main class="content" >
+            <div class="container-fluid">
+
+                <router-outlet></router-outlet>
+
+            </div>
+        </main>
+        
+
+    </div>
+
+</div>

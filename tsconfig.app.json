@@ -1,0 +1,30 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": []
+  },
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ],
+/*    "angularCompilerOptions": {
+    "strictTemplates": true,
+    "annotateForClosureCompiler": true,
+    "enableResourceInlining": true,
+    "preserveWhitespaces": true,
+    "enableIvy": false,
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "skipTemplateCodegen": false,
+    "strictMetadataEmit": true,
+    "fullTemplateTypeCheck": true,
+    "skipMetadataEmit": false,
+    "disableTypeScriptVersionCheck": true,
+
+  }, */
+}

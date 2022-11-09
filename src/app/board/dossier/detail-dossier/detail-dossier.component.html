@@ -1,0 +1,90 @@
+<div class="row">
+
+    <div class="header col-9">
+        <h1 class="header-title">
+            dossiers
+        </h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Tableau de bord</a></li>
+              
+                <li class="breadcrumb-item "><a  routerLink="/admin/dossier">dossiers </a></li>
+              
+               
+            </ol>
+        </nav>
+    </div>
+    <div class="col-3">
+        <div class="row mt-1">
+            <button  [routerLink]="['/admin/dossier/affect' , dossier?._id]"  mat-raised-button class="ml-auto">
+                <mat-icon>screen_share</mat-icon>
+                Affecter
+            </button>
+           
+          </div>
+    
+      
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-actions float-right">
+                    <a href="#" class="mr-1">
+                        <i class="align-middle" data-feather="refresh-cw"></i>
+                    </a>
+                    <div class="d-inline-block dropdown show">
+                        <a href="#" data-toggle="dropdown" data-display="static">
+                            <i class="align-middle" data-feather="more-vertical"></i>
+                        </a>
+
+
+                    </div>
+                </div>
+                <div style="float: right;" class="ml-auto">
+                    <a (click)="updateToggle = !updateToggle" ><i style="margin-left: 8px;font-size: 20px;" class="align-middle fas fa-fw fa-pen "></i></a>
+
+                  
+                                
+                    <a (click)="open(1)" ><i style="margin-left: 8px;font-size: 20px;"  class="align-middle fas fa-fw fa-trash" ></i></a>
+                </div>
+                <h1 style="color: #153d77; font-weight: bold;" class="card-title mb-0">{{dossier?.name }}</h1>
+
+     
+            </div>
+            <div class="card-body">
+                <div  class="row no-gutters">
+       
+                    <div class="col-sm-9 col-xl-12 col-xxl-8">
+                        <strong>A propos </strong>
+                       
+                    </div>
+                </div>
+
+
+
+                <table   class="table table-sm my-2">
+                    <tbody>
+                        <tr>
+                            <th>Nom</th>
+                            <td *ngIf="!updateToggle">{{dossier?.name }}</td>
+                            <td *ngIf="updateToggle"><input [(ngModel)]="dossier.name" type="text" class="form-control"></td>
+                        </tr>
+
+        
+              
+                    </tbody>
+                </table>
+
+                <button  (click)="open(2)"  *ngIf="updateToggle" style="margin-right: 0px;margin-left: 80%;" class="mt-5" mat-flat-button color="primary">Enregistrer les modifications</button>
+          
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <app-form-dossier></app-form-dossier>
+    </div>
+</div>

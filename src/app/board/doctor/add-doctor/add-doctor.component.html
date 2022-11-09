@@ -1,0 +1,178 @@
+
+    <div class="header row">
+        <div class="col-10">
+            <h1 class="header-title">
+                Professionnel de santé
+            </h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink="/">Tableau de bord</a></li>
+              
+                    <li class="breadcrumb-item "><a  routerLink="/admin/doctors">Médecins </a></li>
+                  
+                    <li class="breadcrumb-item active" aria-current="page">Créer un nouveau médecin</li>
+                </ol>
+            </nav>
+        </div>
+
+
+       
+    </div>
+
+
+
+<div class="col-md-12" style="margin-top: -16px;">
+    <div class="card pt-3">
+        <div class="card-body">
+            <div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputName">Nom</label>
+                        <input [(ngModel)]="doctor.name" type="text"  [ngClass]="{'form-control': true, 'error' : testName}" id="inputName" placeholder="Nom">
+                        <p class="text-danger" *ngIf="testName"> Nom invalide </p>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPrénom">Prénom</label>
+                        <input [(ngModel)]="doctor.lastname" type="text"  [ngClass]="{'form-control': true, 'error' : testLastName}" id="inputPrénom" placeholder="Prénom">
+                        <p class="text-danger" *ngIf="testLastName"> Prénom invalide </p>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">E-mail</label>
+                        <input [(ngModel)]="doctor.email" type="email"  [ngClass]="{'form-control': true, 'error' : testEmail}" id="inputEmail4" placeholder="E-mail">
+                        <p class="text-danger" *ngIf="testEmail"> Email invalide , Example: example@example.com </p>
+                        
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4">Mot de passe</label>
+                        <input [(ngModel)]="doctor.password" type="password"  [ngClass]="{'form-control': true, 'error' : testPassword}" id="inputPassword4" placeholder="Mot de passe">
+                        <p class="text-danger" *ngIf="testPassword"> Mot de passe invalide (minimum 6 caractéres) </p>
+                        
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">ADELI</label>
+                        <input [(ngModel)]="doctor.adeli" type="number"  [ngClass]="{'form-control': true, 'error' : testAdeli}" id="inputEmail4" placeholder="Adeli">
+                        <p class="text-danger" *ngIf="testAdeli"> Adeli invalide (9 chiffres) </p>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4">RPPS</label>
+                        <input [(ngModel)]="doctor.rpps" type="number"  [ngClass]="{'form-control': true, 'error' : testRpps}" id="inputPassword4" placeholder="RPPS">
+                        <p class="text-danger" *ngIf="testRpps"> RPPS invalide (11 chiffres) </p>
+                   
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Genre</label>
+                        <select name="" id=""  [ngClass]="{'form-control': true, 'error' : testGender}" [(ngModel)]="doctor.gender">
+                            <option [ngValue]="'homme'">Homme</option>
+                            <option [ngValue]="'femme'">Femme</option>
+                            
+                        </select>
+                        <p class="text-danger" *ngIf="testGender"> Séléctionner le genre </p>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4">Métier</label>
+                        <input name="" id=""  [ngClass]="{'form-control': true, 'error' : testJob}" [(ngModel)]="doctor.job" type="text">
+                        <p class="text-danger" *ngIf="testJob"> Saisir votre métier </p>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="inputAddress">Addresse</label>
+                    <input [(ngModel)]="doctor.adresse" type="text"  [ngClass]="{'form-control': true, 'error' : testAdresse}" id="inputAddress" placeholder="1234 Main St">
+                    <p class="text-danger" *ngIf="testAdresse"> Saisir votre addresse </p>
+
+                 
+                    
+                    
+                </div>
+                
+                <div class="form-group">
+                    <label for="inputAddress">Fax</label>
+                    <input [(ngModel)]="doctor.fax" type="text"  [ngClass]="{'form-control': true, 'error' : testFax}" id="inputAddress" placeholder="fax">
+                    <p class="text-danger" *ngIf="testFax"> Fax invalide </p>
+                    
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputCity">Date de naissance</label>
+                        <input [(ngModel)]="doctor.birthday" type="date"  [ngClass]="{'form-control': true, 'error' : testBirthday}" id="inputCity">
+                        <p class="text-danger" *ngIf="testBirthday"> Séléctionner la date de naissance </p>
+                        
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputTel">Télèphone</label>
+                        <input [(ngModel)]="doctor.tel" type="text"  [ngClass]="{'form-control': true, 'error' : testTelephone}" id="inputTel">
+                        <p class="text-danger" *ngIf="testTelephone"> Télèphone invalide </p>
+                  
+                    </div>
+               
+                </div>
+                <div class="form-group col-12">
+                    <label for="inputphoto" class="m-2" style="width: 99%;">
+                        <div class="card card-to-add" >
+                     
+                            <i  style=" text-align: center; font-size: 60px;padding: 24px;" class="far fa-images  mx-auto"></i>
+                        </div>
+                    </label>
+                        <input (change)="handleFileInput($event.target.files)" #fileInput type="file"  accept='image/*'  [ngClass]="{'form-control': true}" id="inputphoto" style="display: none;">
+                </div>
+       <!--          <label class="image-upload-container btn btn-bwm">
+                    <span>Select Image</span>
+                    <input #imageInput
+                           type="file"
+                           accept="image/*"
+                           (change)="processFile(imageInput)">
+                  </label> -->
+
+                <div *ngIf="url" class="form-groupe  m-3">
+                    <img style="width:100px" [src]="url" alt="">
+                </div>
+                <button  (click)="createNewDoctor()" class="btn btn-primary">Enregistrer
+
+                    <div   *ngIf="showSpinner" class="spinner-border  " role="status">
+                        <span class="visually-hidden"></span>
+                      </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <h1 style="text-align: center">Fun Of Heuristic File Uploader</h1>
+
+<div style="text-align: center">
+  <form>      
+    <div>
+      <input type="file" name="image" (change)="selectImage($event)" />
+    </div>
+    <br>
+    <div>
+      <button type="submit" (click)="onSubmit()">Upload</button>
+    </div>
+  </form>
+</div>
+
+<hr>
+<h2 style="text-align: center">Multiple</h2>
+<div style="text-align: center">
+  <form>      
+    <div>
+      <input type="file" name="images" multiple (change)="selectMultipleImage($event)" />
+    </div>
+    <br>
+  </form>
+</div> -->
+<!-- <input #Image type="file" (change)="handleFileInput($event.target.files)"/>
+<img width="100%" *ngIf="imageUrl" [src]="imageUrl" class="image"> -->

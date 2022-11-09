@@ -1,0 +1,3 @@
+.no-click-backdrop {
+    pointer-events: none;
+  }

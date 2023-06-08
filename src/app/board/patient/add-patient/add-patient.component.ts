@@ -53,7 +53,11 @@ export class AddPatientComponent implements OnInit {
     gender: '',
     account_state: false,
     archived: false,
-    photo:''
+    photo:'',
+    weight:0,
+    size:0,
+    mailConfirmation:false,
+    consontement:""
 
 
   }
@@ -187,7 +191,6 @@ export class AddPatientComponent implements OnInit {
       file.set('ssn', this.patient.ssn);
 
 
-
       this.showSpinner = true;
      /*  console.log("imageBlob",file) */
       this._patient.createNewUser(file).subscribe(
@@ -208,6 +211,10 @@ export class AddPatientComponent implements OnInit {
             added_date: '',
             account_state: false,
             archived: false,
+            weight:0,
+            size:0, 
+            mailConfirmation:false,
+            consontement:""
 
 
           };

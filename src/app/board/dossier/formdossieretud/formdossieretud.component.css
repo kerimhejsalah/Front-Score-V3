@@ -1,0 +1,24 @@
+
+button{
+    /*Change the width as much as you like, but make sure.
+    margin-left and margin-right + width = 100%*/
+    display: block;
+    margin: auto;
+    background-color: transparent;
+    border-color: transparent;
+    }
+.backdropBackground {
+ 
+        background-color: transparent;
+    
+      }
+
+      
+      .dialog-container-custom .mat-dialog-container {
+        outline: 2px solid transparent;
+      }
+
+      .cdk-overlay-backdrop {
+        background-color: transparent;
+        opacity: 0;
+    }

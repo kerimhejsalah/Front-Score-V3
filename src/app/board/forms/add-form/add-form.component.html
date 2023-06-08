@@ -365,7 +365,7 @@
                             <div  *ngFor="let op of section.questions[i].optioncm; let o = index;">
                             <div class="row m-2">
                                 <mat-checkbox class=" inp col-md-7 col-lg-7 col-sm-9 col-xs-9 col-9  " disabled>
-                                    <input  class="question-short-text-response" [(ngModel)]="op.text" placeholder="option">
+                                    <input    [value]="op.text"  (input)="op.text=getValue($event)"  class="question-short-text-response" [(ngModel)]="op.text" placeholder="option">
                                     
                                         <label (click)="in = i; j = o" for="checkPhoto" >
                                         
@@ -848,6 +848,7 @@
             <button class="button button5" (click) = "getNumber(')',7,7,k,0)" value=")">)</button>
             <button class="button button5" (click) = "getNumber(',',7,7,k,0)" value=")">,</button>
             <button class="button button5" (click) = "clear(k)"  value="all-clear">AC</button><br>
+            <button class="button button5" (click) = "retourFormCalcul(k)"  value="all-clear"> <-- </button>
        <section>
        
         <div class="example-button-row">

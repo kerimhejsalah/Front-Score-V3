@@ -134,7 +134,9 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
         this.forms = res;
         this.allForms=res;
         this.totalLength=res.length;
- /*        console.log('forms',this.forms) */
+     /*   for(let i=0;i<300;i++){
+        console.log('forms',this.forms[i].formMuti[0].val[0],i,"title" ,this.forms[i].title) 
+       } */
       },
       err=>{
      

@@ -69,7 +69,18 @@
                         <p class="text-danger" *ngIf="testGender"> Séléctionner le genre </p>
                     </div>
                 </div>
-
+       <!--          <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputName">weight</label>
+                        <input [(ngModel)]="patient.weight" type="text" [ngClass]="{'form-control': true, 'error' : testName}" id="inputName"  placeholder="weight">
+                        <p class="text-danger" *ngIf="testName"> weight invalide </p>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPrenom">size</label>
+                        <input [(ngModel)]="patient.size" type="text"  [ngClass]="{'form-control': true, 'error' : testLastName}" id="inputPrenom"  placeholder="size">
+                        <p class="text-danger" *ngIf="testLastName"> size invalide </p>
+                    </div>
+                </div> -->
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="inputCity">Date de naissance</label>

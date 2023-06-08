@@ -1,0 +1,50 @@
+
+<div class="header row">
+    <div class="col-10">
+        <h1 class="header-title">
+            dossiers
+        </h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Tableau de bord</a></li>
+          
+                <li class="breadcrumb-item "><a  routerLink="/admin/dossiers">dossiers </a></li>
+              
+                <li class="breadcrumb-item active" aria-current="page">Créer un nouveau dossier</li>
+            </ol>
+        </nav>
+    </div>
+
+
+   
+</div>
+
+
+
+<div class="col-md-12" style="margin-top: -16px;">
+<div class="card pt-3">
+    <div class="card-body">
+        <div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputEmail4">Nom</label>
+                    <input [(ngModel)]="dossier.name" type="text" [ngClass]="{'form-control': true, 'error' : testName}"  placeholder="Nom">
+                    <p class="text-danger" *ngIf="testName"> Nom invalide </p>
+                </div>
+      
+            </div>
+
+   
+
+
+
+            <button  (click)="createNewdossier()" class="btn btn-primary">Enregistrer
+
+                <div   *ngIf="showSpinner" class="spinner-border  " role="status">
+                    <span class="visually-hidden"></span>
+                  </div>
+            </button>
+        </div>
+    </div>
+</div>
+</div>

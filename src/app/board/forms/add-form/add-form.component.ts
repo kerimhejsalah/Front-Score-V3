@@ -107,6 +107,7 @@ export class AddFormComponent implements OnInit, AfterViewInit {
       }
     ]
   }
+  dataForm :any;
   staticUrl = '';
   staticUrlQuestion = '';
   countError = 0;
@@ -129,7 +130,7 @@ export class AddFormComponent implements OnInit, AfterViewInit {
     })
   }
   CHANGELanguage(val) {
-    console.log(val);
+   // console.log(val);
     this.form.lang = val
   }
   addQuantity(k) {
@@ -224,7 +225,7 @@ export class AddFormComponent implements OnInit, AfterViewInit {
             this.form.sections[s].questions[i].option.ceil = 0;
           }
         } else {
-          console.log("rrrr", response)
+         /*  console.log("rrrr", response) */
           this.form.sections[s].questions[i].rangeBoolean = true;
           this.form.sections[s].questions[i].typRange = response[0].nameRange
           this.form.sections[s].questions[i].option.ceil = response[response.length - 1].value;
@@ -564,10 +565,13 @@ export class AddFormComponent implements OnInit, AfterViewInit {
     //  this.form.sections[i].questions[0].grille.options.push({title:''})
     // this.form.sections[i].questions.grille.options[o].push({title:''})
   }
+  getValue(event: Event)  {
+   console.log(event)
+  }
   duplicateNewQuestion(section: any, index: any) {
     /*    var suits = ["hearts", "clubs", "Brooks Brothers", "diamonds", "spades"]; */
 
-    this.form.sections[section].questions.splice(index, 0, {
+    this.form.sections[section].questions.push({
 
       title: this.form.sections[section].questions[index].title,
       type: this.form.sections[section].questions[index].type,
@@ -593,7 +597,35 @@ export class AddFormComponent implements OnInit, AfterViewInit {
       optioncm: this.form.sections[section].questions[index].optioncm,
       optionsSaint: this.form.sections[section].questions[index].optionsSaint,
       grille: this.form.sections[section].questions[index].grille,
-    });
+    })
+    console.log(    this.form.sections[section].questions)
+/*     this.form.sections[section].questions.splice(index, 0, {
+
+      title: this.form.sections[section].questions[index].title,
+      type: this.form.sections[section].questions[index].type,
+      image: this.form.sections[section].questions[index].image,
+      hint: this.form.sections[section].questions[index].hint,
+      numberJourCmnt: this.form.sections[section].questions[index].numberJourCmnt,
+      score: 0,
+      minRange: 0,
+      maxRange: 0,
+      option: {
+        value: 1,
+        floor: 0,
+        ceil: 100,
+        showTicks: true,
+        step: 10
+      },
+      dataRange: this.form.sections[section].questions[index].dataRange,
+      rangeBoolean: true,
+      typRange: this.form.sections[section].questions[index].typRange,
+      switch: false,
+      obligatoire: false,
+      options: this.form.sections[section].questions[index].options,
+      optioncm: this.form.sections[section].questions[index].optioncm,
+      optionsSaint: this.form.sections[section].questions[index].optionsSaint,
+      grille: this.form.sections[section].questions[index].grille,
+    }); */
     /* console.log(this.form.sections[section].questions) */
     /* console.log(suits);
          console.log("this.form.sections[section].questions",this.form.sections[section].questions) 
@@ -806,7 +838,22 @@ export class AddFormComponent implements OnInit, AfterViewInit {
       }
     )
   }
+  retourFormCalcul(k){
+   // console.log(this.form.calculeFormule[k].formulCalcul.length,this.form.calculeFormule[k].indexScoreForm, this.form.calculeFormule[k].indexScoreForm[this.form.calculeFormule[k].indexScoreForm.length-1].type)
+    if(this.form.calculeFormule[k].indexScoreForm[this.form.calculeFormule[k].indexScoreForm.length-1].type === "index"){
+      this.form.calculeFormule[k].indexScoreForm.splice(this.form.calculeFormule[k].indexScoreForm.length-1,1);
+      this.form.calculeFormule[k].formulCalcul.slice(0,this.form.calculeFormule[k].formulCalcul.length-7)
+     // console.log("dddd",this.form.calculeFormule[k].formulCalcul,this.form.calculeFormule[k].indexScoreForm, "eeee",    this.form.calculeFormule[k].formulCalcul.slice(0,this.form.calculeFormule[k].formulCalcul.length-7))
+
+    }else{
+      this.form.calculeFormule[k].indexScoreForm.splice(this.form.calculeFormule[k].indexScoreForm.length-1,1);
+      this.form.calculeFormule[k].formulCalcul.slice(0,this.form.calculeFormule[k].formulCalcul.length-1)
+     // console.log("autree",this.form.calculeFormule[k].formulCalcul,this.form.calculeFormule[k].indexScoreForm, "eeee",    this.form.calculeFormule[k].formulCalcul.slice(0,this.form.calculeFormule[k].formulCalcul.length-1)  )
+    }
+
+  }
   public getNumber(v: string, val1, val2, k, val) {
+  
     /*      console.log("v",v,"vall",val,"val1",val1,"val22",val2,"k",k)  */
     if (this.waitForSecondNumber) {
       this.currentNumber = v;
@@ -951,7 +998,9 @@ export class AddFormComponent implements OnInit, AfterViewInit {
     }
   }
   createNewForm() {
-    console.log(this.form)
+  // console.log(this.form)
+    //this.dataForm = this.form;
+    //console.log("this.dataForm",this.dataForm)
     this.testFormule = false;
     this.testFormTitle = false;
     this.testFormSections = false;
@@ -1027,6 +1076,7 @@ export class AddFormComponent implements OnInit, AfterViewInit {
             }
           })
         }
+    
       })
 
     })
@@ -1089,7 +1139,7 @@ export class AddFormComponent implements OnInit, AfterViewInit {
           if (this.form.sections[i].questions[j].dataRange == undefined) {
             this.form.sections[i].questions[j] = ressss[0]
           } else {
-            this.form.sections[i].questions[j].dataRange.push({ value: 0, legend: "", nameRange: "" })
+           // this.form.sections[i].questions[j].dataRange.push({ value: 0, legend: "", nameRange: "" })
           }
 
           // console.log("resultresultresult3333333333", this.form.sections[i].questions[j])
@@ -1103,7 +1153,7 @@ export class AddFormComponent implements OnInit, AfterViewInit {
           { score: '', message: '' })
 
       }
-      /*       console.log("yeyeeeeeeeeeeeeyeyeye",this.form) */
+    //  console.log("yeyeeeeeeeeeeeeyeyeye",this.form,this.dataForm)  
       this.formService.createNewForm(this.form).subscribe(
         (res) => {
 

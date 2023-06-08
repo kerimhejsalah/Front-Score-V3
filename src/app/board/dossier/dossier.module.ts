@@ -26,8 +26,13 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MyDialogComponent } from 'src/app/companent/my-dialog/my-dialog.component';
 import { DialogBodyComponent } from 'src/app/companent/dialog-body/dialog-body.component';
+import { AdddossieretudComponent } from './adddossieretud/adddossieretud.component';
+import { DetaildossieretudComponent } from './detaildossieretud/detaildossieretud.component';
+import { ListdossieretudComponent } from './listdossieretud/listdossieretud.component';
+import { AffectdossieretudComponent } from './affectdossieretud/affectdossieretud.component';
+import { FormdossieretudComponent } from './formdossieretud/formdossieretud.component';
 @NgModule({
-  declarations: [DossierComponent, AddDossierComponent, ListDossierComponent, DetailDossierComponent, FormDossierComponent, FormDossierAffectComponent],
+  declarations: [DossierComponent, AddDossierComponent, ListDossierComponent, DetailDossierComponent, FormDossierComponent, FormDossierAffectComponent, AdddossieretudComponent, DetaildossieretudComponent, ListdossieretudComponent, AffectdossieretudComponent, FormdossieretudComponent],
   imports: [
     CommonModule,
     DossierRoutingModule,

@@ -130,7 +130,7 @@
             <div class="card-section" style="background-color: #ffffffde;" >
                   <div class="card-header">
                     <div class="card-header row mr-3 ml-auto">
-                        <button class="ml-auto" (click)="deleteSection(s)" mat-button>
+                        <button  class="ml-auto" (click)="deleteSection(s)" mat-button>
                             <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
                             Supprimer
                         </button>
@@ -837,10 +837,10 @@
         <div class="card-body">
             <div class="card-header row  mr-3">       
                 <h1 class="m-3">Formule Calcule {{k}}</h1>
-                <div class="card-header row mr-3 ml-auto" >
-                    <button (click)="deleteFormCalule(k)" *ngIf="form.formMuti.length!=0" mat-button>
+                <div class="card-header row mr-3 ml-auto" *ngIf="form.formMuti.length>1" >
+                    <button (click)="deleteFormCalule(k)"  mat-button>
                         <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
-                        Supprimer
+                        Supprimer 
                     </button>
                 </div>
         
@@ -857,11 +857,12 @@
        <button class="button button5" (click) = "getNumber(')',7,7,k,0)" value=")">)</button>
        <button class="button button5" (click) = "getNumber(',',7,7,k,0)" value=")">,</button>
        <button class="button button5" (click) = "clear(k)"  value="all-clear">AC</button><br>
+       <button class="button button5" (click) = "clear(k)"  value="all-clear">AC</button><br>
       <!--  <button class="buttonNumber button5" (click) = "getNumber(')',k)" value=")">)</button> -->
       <section>
        
         <div class="example-button-row">
-            <button mat-button (click) = "getNumber(0,7,7,k,0)" color="primary">0</button>
+          <button mat-button (click) = "getNumber(0,7,7,k,0)" color="primary">0</button>
           <button mat-button (click) = "getNumber(1,7,7,k,0)" color="primary">1</button>
           <button mat-button (click) = "getNumber(2,7,7,k,0)" color="primary">2</button>
           <button mat-button (click) = "getNumber(3,7,7,k,0)" color="primary">3</button>

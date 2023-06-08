@@ -223,13 +223,13 @@ return this.http.put<any>(this.urlDoctor  + id , doctor);
 
   
   affect(affectation: any){
-     /*   console.log("affectatioddddddddn",affectation)  */
+       console.log("affectatioddddddddn",affectation,this.urlAffectation + 'addaffectation')  
   return this.http.post(this.urlAffectation + 'addaffectation' , affectation);
 
   }
   multAffect(affectation: any){
     
-    console.log("affectation.length",affectation.length) 
+  //  console.log("affectation.length",affectation.length) 
 
     for (let i=0;i<affectation.length;i++){
     /*   console.log("iiiiiiii",i) 

@@ -24,6 +24,7 @@ export class DossierService {
 
 
   getAlldossier(){
+   // console.log(this.url)
     return this.http.get<any>(this.url);
   }
 
@@ -40,7 +41,7 @@ export class DossierService {
   }
 
   getdossierById(id: any){
-
+    //console.log(id) 
     return this.http.get<any>(this.url + id);
 
   }
@@ -94,11 +95,12 @@ export class DossierService {
 
 
   getAllForm(){
+   // console.log(this.urlForms + 'getforms')
     return this.http.get<any>(this.urlForms + 'getforms');
   }
 
   getMyForm(id: any){
-console.log(this.urlAffectation + 'getmyform/' )
+//console.log(this.urlAffectation + 'getmyform/',id )
     return this.http.get<any>(this.urlAffectation + 'getmyform/' + id);
 
   }

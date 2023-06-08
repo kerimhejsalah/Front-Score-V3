@@ -73,7 +73,9 @@ ngAfterViewInit(){
 }
 
 
-
+add(x:any):boolean{
+  return 
+}
 url : any;
 fileToUpload: any;
 imageUrl: any;

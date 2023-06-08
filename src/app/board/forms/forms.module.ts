@@ -29,8 +29,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {AutosizeModule} from 'ngx-autosize';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { ListeFormsEtudComponent } from './liste-forms-etud/liste-forms-etud.component';
+import { NewFormsEtudsComponent } from './new-forms-etuds/new-forms-etuds.component';
+import { DetailformsetudComponent } from './detailformsetud/detailformsetud.component';
+import { FormpreviewetudComponent } from './formpreviewetud/formpreviewetud.component';
+import { PreviewetudComponent } from './previewetud/previewetud.component';
+import { AffectetudComponent } from './affectetud/affectetud.component';
 @NgModule({
-  declarations: [AddFormComponent, ListFormsComponent, PreviewComponent, DetailFormComponent, AffectationComponent, NgbdModalLock, NgbdModalCheckLock],
+  declarations: [AddFormComponent, ListFormsComponent, PreviewComponent, DetailFormComponent, AffectationComponent, NgbdModalLock, NgbdModalCheckLock, ListeFormsEtudComponent, NewFormsEtudsComponent, DetailformsetudComponent, FormpreviewetudComponent, PreviewetudComponent, AffectetudComponent],
   imports: [
     CommonModule,
     Ng5SliderModule,

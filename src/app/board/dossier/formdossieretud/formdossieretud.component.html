@@ -1,0 +1,148 @@
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-actions float-right">
+                <a href="#" class="mr-1">
+                    <i class="align-middle" data-feather="refresh-cw"></i>
+                </a>
+                <div class="d-inline-block dropdown show">
+                    <a href="#" data-toggle="dropdown" data-display="static">
+                        <i class="align-middle" data-feather="more-vertical"></i>
+                    </a>
+
+            
+                </div>
+            </div>
+            <h1 class="card-title mb-0">Formulaires affectées à {{dossier?.name}} :</h1>
+        </div>
+        <div class="card-body">
+            <table id="datatables-clients" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>titre</th>
+                       
+                    
+                        <th>date de création</th>
+                       
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let f of allForms; let i = index">
+                      <ng-container *ngIf="f" >
+                        <td>{{i}}</td>
+                        <td> <span style="cursor: pointer;"  [routerLink]="['/admin/forms/detail' , f._id]"> {{f?.title}} </span>  </td>
+                       
+                      
+                        <td>{{f?.created_date | date}}</td>
+
+
+                    
+                        <td class="table-action row">
+                          
+                            <div style="width:4px"></div>
+                            <button (click)="open(f._id , 2); " mat-raised-button >
+
+
+                                <mat-icon style="font-size: 30px; margin: 4px;margin-bottom: 8px;">
+                                    cancel_schedule_send
+                                </mat-icon>
+                            </button>       
+                           
+                      
+                        </td>
+                      </ng-container>
+                    </tr>
+         
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <div class="card-actions float-right">
+                <a href="#" class="mr-1">
+                    <i class="align-middle" data-feather="refresh-cw"></i>
+                </a>
+                <div class="d-inline-block dropdown show">
+                    <a href="#" data-toggle="dropdown" data-display="static">
+                        <i class="align-middle" data-feather="more-vertical"></i>
+                    </a>
+
+            
+                </div>
+            </div>
+            <h1 class="card-title mb-0">Liste Dossier à {{dossier?.name}} :</h1>
+        </div>
+        <div class="card-body">
+         <!--    <div *ngFor="let f of ListeDossier; let i = index">
+                <h1 > {{f.name}}</h1>
+                
+            </div> -->
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Affecter</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let f of ListeDossier2; let i = index">
+                    <th scope="row" > {{i}}</th>
+                    <td > {{f.name}}</td>
+                    <td >  
+                        <div style="float: left;" class="ml-auto">  
+                        <button  mat-raised-button (click)="getdata(ListeDossier2[i],i)">
+
+                            <mat-icon style="font-size: 30px; margin: 4px;margin-bottom: 8px;">
+                                send
+                            </mat-icon>
+                        </button></div>    <!--   <button mat-raised-button (click)="getdata(ListeDossier2[i])" >
+
+
+                        <mat-icon style="font-size: 30px; margin: 4px;margin-bottom: 8px;cursor: pointer;">
+                            cancel_schedule_send
+                        </mat-icon>
+                    </button>  --> </td>
+                    <td >      <div style="float: left;" class="ml-auto">
+                        <a  style="cursor: pointer;" (click)="updateNameDossier(ListeDossier2[i],i)"><i  style="margin-left: 8px;font-size: 20px;" class="align-middle fas fa-fw fa-pen " ></i></a>
+    
+                      
+                                    
+                        <a (click)="deletedossier(f)"  style="cursor: pointer;"><i style="margin-left: 8px;font-size: 20px;"  class="align-middle fas fa-fw fa-trash" ></i></a>
+                    </div></td>
+                 <!--    <td>Otto</td>
+                    <td>@mdo</td> -->
+                  </tr>
+                  
+                 <!--  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr> -->
+                </tbody>
+              </table>
+            <div class="card-body">
+                <input [(ngModel)]="dossier1.name" type="text"class="form-control"  placeholder="Nom">  
+            </div>
+         
+            <div class="card-body">
+                <button  (click)="updateInput()"  mat-raised-button class="ml-auto">
+                    <mat-icon>add</mat-icon>
+                    Ajouter Dossier
+                </button>
+            </div>
+        </div>
+     
+    </div>
+</div>

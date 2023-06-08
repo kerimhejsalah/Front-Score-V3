@@ -26,6 +26,7 @@ setTimeout(() => {
     this._dossierData.getAlldossier().subscribe(
       res=>{
         let i=0
+        console.log("rrrr",res)
         res.map((result)=>{
           if(result.status)
           i=i+1 

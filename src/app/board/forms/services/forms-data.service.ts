@@ -20,7 +20,7 @@ export class FormsDataService {
 
 
   createNewForm(form: any){
-/*  console.log("fff",form) */
+  // console.log("fff",form)  
     return this.http.post<any>(this.url + 'addforms' , form);
 
 

@@ -1,0 +1,928 @@
+<div class="header row">
+    <div class="col-lg-8 col-sm-8">
+         <h1 class="header-title">
+            Création d’un nouveau Formulaire
+         </h1>
+    </div>
+   
+    <div class="col-lg-2  col-sm-3  ml-auto">
+        <button (click)="createNewForm()"  mat-raised-button>Enregistrer</button>
+    </div>
+</div> 
+
+
+<div class="container-fluid">
+
+
+    <div class="col-12 col-md-12 col-xs-12 col-lg-11 mx-auto">
+        <div class="card" >
+              <div class="card-header">
+                <input [(ngModel)]="form.title" (ngModelChange)="changeFormTitle()" placeholder="Titre du Formulaire Etud"
+                class="form-title" [ngClass]="{'is-invalid': testFormTitle}">
+                <p *ngIf="testFormTitle" class="text-danger">Titre de formulaire obligatoire</p>
+                <textarea autosize   class="form-description" [(ngModel)]="form.description"  cols="30" rows="1" placeholder="Description du formulaire ici..."></textarea>
+           
+    
+           
+            </div>
+   
+        </div>
+    </div>
+
+
+    <div  class="col-sm-12 col-md-12 col-lg-11 col-12 mx-auto">
+        <div class="card question-card">
+
+           
+            <div  class="row card-body col-12">
+
+              <div class="row w-100">
+                
+                <div class="col-lg-12 ">
+
+                    <h1  class="question-title"> Ce formulaire est pour :  </h1>
+
+                </div>
+
+              </div>
+
+
+              <div class="row w-100 mt-5">
+
+                 
+                 <div style="width: 100%;" class="col-lg-12 col-sm-12 w-100">
+                    <div >
+                        <div class="row  m-2">
+                            <mat-radio-button class=" inp col-md-8 col-lg-9 col-sm-9 col-xs-9 col-9  "
+                            [checked]="form.genre ==='homme'" (change)="handleChange('homme')">
+                            <input class="question-short-text-response" readonly style="border: none;" value="Homme">
+          
+                          </mat-radio-button>
+          
+          
+                          <mat-radio-button class=" inp col-md-8 col-lg-9 col-sm-9 col-xs-9 col-9  "
+                            [checked]="form.genre ==='femme'" (change)="handleChange('femme')">
+                            <input class="question-short-text-response" readonly style="border: none;" value="Femme">
+          
+                          </mat-radio-button>
+                          <mat-radio-button class=" inp col-md-8 col-lg-9 col-sm-9 col-xs-9 col-9"
+                          [checked]="form.genre ==='enfant'"  (change)="handleChange('enfant')" >
+                            <input  class="question-short-text-response" readonly style="border: none;" value="Enfant">
+                       
+                        </mat-radio-button>
+                          <mat-radio-button class=" inp col-md-8 col-lg-9 col-sm-9 col-xs-9 col-9"
+                          [checked]="form.genre ==='indifférent'"  (change)="handleChange('indifférent')" >
+                            <input  class="question-short-text-response" readonly style="border: none;" value="Indifférent">
+                       
+                        </mat-radio-button>
+   
+                        </div>
+
+
+                    </div>
+                 
+ 
+                     
+                     
+                 </div>
+
+
+                 <div style="width: 100%;" class="col-lg-12 col-sm-12 w-100">
+                    <div >
+                     <!--    <div class="row  m-2">
+                            <mat-icon style="cursor: help;" >library_add</mat-icon>
+                            Formule : 
+                            <input placeholder="Formule" class="question-short-text-response" [(ngModel)]="form.formule" >
+
+                   
+                        </div> -->
+                        <p class="text-danger ml-3" *ngIf="testFormule">La formule est obligatoire</p>
+
+                    </div>
+                 
+ 
+                     
+                     
+                 </div>
+
+
+              </div>
+
+              
+           
+       
+
+
+
+            </div>
+   
+
+
+           
+        </div>
+    </div>
+    <div  class="col-sm-12 col-md-12 col-lg-11 col-12 mx-auto">
+        <div class="card question-card">
+
+           
+            <div  class="row card-body col-12">
+
+              <div class="row w-100">
+                
+                <div class="col-lg-12 ">
+
+                    <h1  class="question-title"> Type :  </h1>
+
+                </div>
+
+              </div>
+
+ 
+              <div class="row w-100 mt-5">
+
+                 
+                 <div style="width: 100%;" class="col-lg-12 col-sm-12 w-100">
+                    <div >
+                        <div class="row  m-2">
+                 
+                          <mat-radio-group name="opList2" >
+                            <mat-radio-button   *ngFor="let op of listOfOptions"  name="opList2" class=" inp col-md-8 col-lg-9 col-sm-9 col-xs-9 col-9 "  
+                            (change)="CHANGELanguage(op.name)">{{ op.name}}</mat-radio-button>
+                          </mat-radio-group>
+ 
+   
+                        </div>
+
+
+                    </div>
+                 
+ 
+                     
+                     
+                 </div>
+
+ 
+
+              </div>
+
+              
+           
+       
+
+
+
+            </div>
+   
+
+
+           
+        </div>
+    </div>
+      <div *ngFor="let section of form.sections;let s = index">
+
+        <div class="col-12 col-md-12 col-xs-12 col-lg-11 mx-auto">
+            <div class="card-section" style="background-color: #ffffffde;" >
+                  <div class="card-header">
+                    <div class="card-header row  mr-3">
+                    
+
+                        <div class="card-header row mr-3 ml-auto">
+                            <button (click)="deleteSection(s)" mat-button>
+                                <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+                                Supprimer
+                            </button>
+                         
+                        
+                        </div>
+                
+                    </div>
+                   
+                    <textarea autosize class="question-title" [(ngModel)]="section.title" class="form-title" placeholder="Titre du Section"></textarea>
+                   <!--  <input placeholder="tsess"> -->
+                    <textarea autosize   class="form-description" [(ngModel)]="section.description"  cols="30" rows="1" placeholder="Description du section"></textarea>
+               
+        
+               
+                </div>
+       
+            </div>
+        </div>
+
+
+        <div cdkDropList (cdkDropListDropped)="drop($event, s)">
+            <div *ngFor="let question of section.questions; let i = index;" cdkDrag class="col-sm-12 col-md-12 col-lg-11 col-12 mx-auto mt-4">
+                <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                <div class="card question-card">
+                    <div class="row">
+                        <mat-icon cdkDragHandle class="mx-auto" style="font-size: 44px; transform: rotate(90deg);cursor: pointer;"> drag_indicator </mat-icon>
+                    </div>
+                    <div class="card-header row  mr-3">
+                    
+                
+                        <h1 class="m-3">{{countNumberOfQuestion(s,i)}} - Q({{ s}} ,{{ i}})</h1>
+        
+
+                        <div class="card-header row mr-3 ml-auto">
+                            <button (click)="deleteQuestion(i,s)" mat-button>
+                                <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+                                Supprimer
+                            </button>
+                            <button (click)="duplicateNewQuestion(s,i)" mat-button>
+                           <!--      <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon> -->
+                                <mat-icon aria-hidden="false" aria-label="Example home icon"> insert_drive_file</mat-icon>
+                                Dupliquer
+                            </button>
+                            <mat-checkbox  (click)="section.questions[i].obligatoire = !section.questions[i].obligatoire" style="margin-top: 8px;margin-left: 8px; color: #093b84;" class="example-margin" >Obligatoire *</mat-checkbox>
+                            <mat-checkbox [checked]="section.questions[i].switch"  (change)="switcher(s,i)" style="margin-top: 8px;margin-left: 16px; color: #093b84;" class="example-margin" >Accéder aux séctions *</mat-checkbox>
+                            
+                        
+                        </div>
+                
+                    </div>
+                    <hr style="margin-top: -6px; margin-right: 16px;margin-left: 16px;">  
+                
+                    <div  class="row card-body col-12">
+
+                    <div class="row w-100">
+                        
+                        <div class="col-lg-8 " style="display: flex;">
+                            
+                            <textarea autosize    [(ngModel)]="section.questions[i].title" rows="2" class="question-title" value="Question title here" placeholder="Titre du Question">
+                            </textarea>
+
+                     <!--        <label (click)="in = i;" for="quesPhoto" >
+                                            
+                                    <mat-icon class="ico mt-4" color="primary" >photo</mat-icon>
+                            
+                            </label>
+                            <input  (change)="onAddQuestion($event,s,'TT')"  type="file" name="" style="display: none;" accept='image/*'  id="quesPhoto"> -->
+                            
+                            
+                        
+
+                        </div>
+
+                        <div class="col-lg-4">
+                        
+                            <mat-select class="select-type" [placeholder]="section.questions[i].type">
+                                <mat-option (click)="section.questions[i].type = 'Text court'" >
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon">short_text</mat-icon>
+                                    Texte court
+                                </mat-option>
+                            
+                    
+                            
+                                <mat-option>
+                                    <hr>
+                                </mat-option>
+
+                            
+                                <mat-option (click)="section.questions[i].type = 'Choix multiples'">
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon">check_box</mat-icon>
+                                    Choix multiples
+                                </mat-option>
+                        
+                                
+                                <mat-option (click)="section.questions[i].type = 'Cases à cocher'">
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon">radio_button_checked</mat-icon>
+                                    Cases à cocher
+                                </mat-option>
+
+                        
+                                <mat-option (click)="section.questions[i].type = 'VISUELLE ANALOGIQUE'">
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon">linear_scale</mat-icon>
+                                    VISUELLE ANALOGIQUE
+                                </mat-option>
+                                <mat-option (click)="section.questions[i].type = 'Range Bar';openDialog(i,s)">
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon">linear_scale</mat-icon>
+                                    Range Bar
+                                </mat-option>
+                                <mat-option (click)="section.questions[i].type = 'Grille de cases à cocher 2';">
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon">apps</mat-icon>
+                                    Grille de cases à cocher 2
+                                </mat-option>
+                           <!--      <mat-option (click)="section.questions[i].type = 'Grille de cases à cocher';">
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon">apps</mat-icon>
+                                    Grille de cases à cocher
+                                </mat-option> -->
+                                <mat-option (click)="section.questions[i].type = 'Nomber de jours';">
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon">today</mat-icon>
+                                    Nomber de jours
+                                </mat-option>
+                            </mat-select>
+
+                        </div>
+                      
+
+                        <div  *ngIf="staticUrlQuestion.length > 1 && section.questions[i].image.length == 0 && i == in" style="width: 100%; margin-left: 44px;position: relative;">
+                            <img style="width: 250px;" class="img-thumbnail" src="assets/img/placeholder.png" alt="">
+
+                            <div class="spinner-grow text-dark " style="position: absolute; left: 110px;top: 70px;" role="status">
+                                <span class="visually-hidden"></span>
+                            </div>
+                        </div>
+
+                        <div  *ngIf="section.questions[i].image.length > 1 " style="width: 100%; margin-left: 44px;position: relative;margin-top: 24px;">
+                            <img style="width: 250px;" class="img-thumbnail" [src]="endpoint.url + 'getfile/' + section.questions[i].image " alt="">
+                            <button (click)="deleteImageQuestion(section.questions[i].image , i,s )" mat-mini-fab  color="primary" aria-label="Example icon button with a home icon" style="position: absolute;left: -16px;top: -16px;">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+             
+                    <div class="row w-100 mt-5">
+                 
+                        <div *ngIf="section.questions[i].type == 'Text court'" class="col-lg-8 col-sm-12">
+                            <input disabled class="question-short-text-response" value="réponse courte">
+                            <input  class="question-short-text-comment-1" [(ngModel)]="section.questions[i].hint" placeholder="commentaire">
+
+                        </div>
+                        <div *ngIf="section.questions[i].type == 'Nomber de jours'" class="col-lg-8 col-sm-12">
+                            <div class="row  m-2">
+                                <div  class="col-lg-8 col-sm-12" style="padding-left: 3%;">
+                                    <div  class="custom-slider" style="padding-bottom: 20px;width: 89%;padding-left: 4%;">
+                                    <input  class="question-short-text-response"  [(ngModel)]="section.questions[i].numberJourCmnt" style="width: 100%;" placeholder="Donner nomber de jours">
+                                  <!--   <input  class="question-short-text-comment-1" [(ngModel)]="section.questions[i].numberJourCmnt" placeholder="commentaire"> -->
+                                </div>
+                                </div>
+        
+                             
+                                <p   class="score col-md-2 col-lg-2 col-sm-2 col-xs-2 col-2" >
+                        
+                                <input  class="question-score" value="0" disabled>
+                                × 10
+                                </p>
+
+                         
+                          
+                            </div>
+                    
+
+                        </div>
+
+                    <div *ngIf="section.questions[i].type == 'Choix multiples'" style="width: 100%;" class="col-lg-12 col-sm-12 w-100">
+
+                            <div  *ngFor="let op of section.questions[i].optioncm; let o = index;">
+                            <div class="row m-2">
+                                <mat-checkbox class=" inp col-md-7 col-lg-7 col-sm-9 col-xs-9 col-9  " disabled>
+                                    <input    [value]="op.text"  (input)="op.text=getValue($event)"  class="question-short-text-response" [(ngModel)]="op.text" placeholder="option">
+                                    
+                                        <label (click)="in = i; j = o" for="checkPhoto" >
+                                        
+                                                <mat-icon class="ico" color="primary" >photo</mat-icon>
+                                        
+                                        </label>
+                                        <input  (change)="handleFileInput($event.target.files,s,'CM')"  type="file" name="" style="display: none;" accept='image/*'  id="checkPhoto">
+                                        
+                                        
+                                        <mat-icon class="ico" style="margin-left: 16px;cursor: pointer;" (click)="deleteImageOption(section.questions[i].optioncm[o].image , i , o,s,'CM');removeOptionCm(i, o,s)" *ngIf="section.questions[i].optioncm.length > 1"  color="primary" >close</mat-icon>
+                                    
+                
+                                
+                                </mat-checkbox>
+            
+                                
+                                <p class="score col-md-2 col-lg-2 col-sm-2 col-xs-2 col-2">
+                                    Score: 
+                                    <input [(ngModel)]="section.questions[i].optioncm[o].score"  class="question-score" value="0">
+                    
+                                </p>
+
+                                <div class="col-2 my-4" style="display: flex;" *ngIf="section.questions[i].switch">
+
+                                    <mat-select class="ml-3" [(ngModel)]="section.questions[i].optioncm[o].next" placeholder="sélectionner la section" style="font-size: 11px;">
+                                        <mat-option *ngFor="let item of form.sections; let i = index" [value]="i" >
+                                            
+                                            Accéder à({{item.title}})
+                                        </mat-option>
+                                        
+                                    </mat-select>
+                                </div>
+
+                                <input  class="question-short-text-comment" [(ngModel)]="section.questions[i].optioncm[o].hint" placeholder="commentaire">
+
+
+
+                            </div>
+        
+                            <div  *ngIf="staticUrl.length > 1 && section.questions[i].optioncm[o].image.length == 0 && i == in && o == j" style="width: 100%; margin-left: 44px;position: relative;">
+                                <img style="width: 250px;" class="img-thumbnail" src="assets/img/placeholder.png" alt="">
+        
+                                <div class="spinner-grow text-dark " style="position: absolute; left: 110px;top: 70px;" role="status">
+                                    <span class="visually-hidden"></span>
+                                </div>
+                            </div>
+        
+                            <div  *ngIf="section.questions[i].optioncm[o].image.length > 1 " style="width: 100%; margin-left: 44px;position: relative;">
+                                <img style="width: 250px;" class="img-thumbnail" [src]="section.questions[i].optioncm[o].image " alt="">
+                                <button (click)="deleteImageOption(section.questions[i].optioncm[o].image , i , o,s,'CM')" mat-mini-fab  color="primary" aria-label="Example icon button with a home icon" style="position: absolute;left: -16px;top: -16px;">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                            
+                        <div *ngIf="section.questions[i].textecourt" class="col-lg-8 col-sm-12">
+                            <input disabled class="question-short-text-response" value="réponse courte">
+                           
+
+                        </div>
+                        <mat-icon style="cursor: help;" >library_add</mat-icon>
+                            <span (click)="section.questions[i].optioncm.push({text: '', score: 0 , image: '', hint:'' , next:''})" style="cursor: pointer;"> Ajouter une option </span>
+                            <mat-icon *ngIf="!section.questions[i].textecourt" style="cursor: help;" >library_add</mat-icon>
+                            <span *ngIf="!section.questions[i].textecourt" (click)="section.questions[i].textecourt=true" style="cursor: pointer;"> Ajouter une textecourt </span>
+                            <mat-icon style="cursor: help;" *ngIf="section.questions[i].textecourt">clear</mat-icon>
+                            <span *ngIf="section.questions[i].textecourt" (click)="section.questions[i].textecourt=false" style="cursor: pointer;"> Supprimer textecourt </span>
+                      
+                        </div>
+
+
+                    
+                        <div *ngIf="section.questions[i].type == 'Grille de cases à cocher 2'" style="width: 100%;" class="col-lg-12 col-sm-12 w-100">
+                            <div class="container">
+                                <div class="row">
+                                  <div class="col-sm">
+                                    <h1>Lignes</h1>
+                                    <div  *ngFor="let op of section.questions[i].grille.options; let o = index;">
+                                        <div class="row m-2">
+                                            <div class="col">
+                                            <input  class="question-short-text-response" [(ngModel)]="op.title" placeholder="option">
+                                        
+                                        </div>
+                                        <div class="col" style="width: 1px;">
+                                        </div>
+                                                <div class="col">
+                                                    <mat-icon class="ico" style="cursor: pointer;"
+                                                    (click)="removeOptionGrille(i, o,s)"
+                                                     *ngIf="section.questions[i].grille.options.length > 1"
+                                                       color="primary" 
+                                                       >close</mat-icon>
+                                                  </div>
+                                          
+                                        </div>
+                                    </div>
+                                    <mat-icon style="cursor: help;" >library_add</mat-icon>
+                                    <span (click)="section.questions[i].grille.options.push({title:''});test(i, o,s)" style="cursor: pointer;"> Ajouter une option </span>
+                                 
+                                  </div>
+                                  <div class="col-sm">
+                                    <h1>Colonnes</h1>
+                                    <div  *ngFor="let op of section.questions[i].grille.scoreS; let o = index;">
+                                        <div class="row">
+
+                                            <mat-checkbox class=" inp col-md-7 col-lg-7 col-sm-9 col-xs-9 col-9  " disabled>
+                                        
+                                                
+                                                  
+                                                <input  class="question-short-text-response" [(ngModel)]="op.title" placeholder="option">
+                                                <input  [(ngModel)]="op.score"  class="question-score" placeholder="0">
+                                                <mat-icon class="ico" style="margin-left: 16px;cursor: pointer;"
+                                                (click)="removeOptionGrille2(i, o,s)"
+                                                 *ngIf="section.questions[i].grille.scoreS.length > 1"
+                                                   color="primary" >close</mat-icon>
+
+                                            
+                                   
+                                            </mat-checkbox>
+                                         
+            
+                                        </div>
+                                     
+                                    </div>
+                                    <mat-icon style="cursor: help;" >library_add</mat-icon>
+                                    <span (click)="section.questions[i].grille.scoreS.push({title:'', score:0})" style="cursor: pointer;"> Ajouter une option </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>     
+                            
+                         
+                        <div *ngIf="section.questions[i].type == 'Range Bar'" style="width: 100%;" class="col-lg-12 col-sm-12 w-100">
+                            <div  *ngFor="let op of section.questions[i].options; let o = index;">
+                                <div class="row  m-2">
+                                    <div  class="col-lg-8 col-sm-12" style="padding-left: 3%;">
+                                        <div *ngIf="section.questions[i].type == 'Range Bar'" class="custom-slider" style="padding-bottom: 20px;width: 89%;padding-left: 4%;">
+                                
+                                            <ng5-slider [(value)]="section.questions[i].options[o].score"  *ngIf="section.questions[i].rangeBoolean" [options]="sliderOptions(section.questions[i])" disabled></ng5-slider>
+                                        
+                                          </div>
+                                                        <mat-dialog-content *ngIf="section.questions[i].rangeBoolean" >
+
+                                                            <button (click)="openDialog(i,s);"  mat-raised-button color="primary">Modifier Range</button>
+                                                        </mat-dialog-content> 
+                                
+                                    </div>
+            
+                                    
+                                    <p  *ngIf="section.questions[i].rangeBoolean"  class="score col-md-2 col-lg-2 col-sm-2 col-xs-2 col-2">
+                                    Score: 
+                                    <input  disabled  class="question-score" value="0">
+                    
+                                    </p>
+
+
+                              
+                                </div>
+
+                           
+                            </div>                 
+                         </div>
+
+                        <div *ngIf="section.questions[i].type == 'VISUELLE ANALOGIQUE'" style="width: 100%;" class="col-lg-12 col-sm-12 w-100">
+                            
+                                <div class="row  m-2">
+                                    <div  class="col-lg-8 col-sm-12" style="padding-left: 3%;">
+                                        <div  class="custom-slider" style="padding-bottom: 20px;width: 89%;padding-left: 4%;">
+                                          <div class="row">
+                                             <div class='container23'>
+                                             
+                                               <img style="width: 100%;height: 100%;"  class="img-thumbnail" src="assets/img/Douleurgraph1.png" alt="">
+                                               <input type="range" min="1" max="100" [(ngModel)]="pelviennes" value="50" class="slider" name='slider' id="slider">
+                                             
+                                             </div>
+                                           </div>
+                                    
+                                          </div>
+                                                       
+                                
+                                    </div>
+            
+                                    <p  class="score col-md-2 col-lg-2 col-sm-2 col-xs-2 col-2">
+                                        Score: 
+                                        <input  disabled class="question-score" value="0">
+                        
+                                        </p>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row w-100 mt-5">
+               
+
+
+                        
+                        
+                        <div *ngIf="section.questions[i].type == 'Cases à cocher'" style="width: 100%;" class="col-lg-12 col-sm-12 w-100">
+                            <div  *ngFor="let op of section.questions[i].options; let o = index;">
+                                <div class="row  m-2">
+                                    <mat-radio-button class=" inp col-md-7 col-lg-7 col-sm-9 col-xs-9 col-9  "  disabled>
+                                  
+                                            
+                                        <input  class="question-short-text-response" [(ngModel)]="section.questions[i].options[o].text" placeholder="option">
+                                        
+                                        <label (click)="in = i; j = o" for="radioPhoto">
+                                            
+                                                <mat-icon class="ico"  color="primary">photo</mat-icon>
+                                            
+                                        </label>
+                                        <input  (change)="handleFileInput($event.target.files,s,'CC')"  type="file" name="" style="display: none;" accept='image/*' id="radioPhoto">
+                                        
+                                        <mat-icon class="ico"  style="margin-left: 16px;cursor: pointer;" (click)=" deleteImageOption(section.questions[i].options[o].image , i , o,s,'CC') ; removeOption(i, o,s)" *ngIf="section.questions[i].options.length > 1"  color="primary" >close</mat-icon>
+                                    
+                               
+                                    </mat-radio-button>
+            
+                                    
+                                    <p class="score col-md-2 col-lg-2 col-sm-2 col-xs-2 col-2">
+                                    Score: 
+                                    <input [(ngModel)]="section.questions[i].options[o].score"  class="question-score" value="7">
+                    
+                                    </p>
+
+
+                                    <div class="col-2 my-4" style="display: flex;" *ngIf="section.questions[i].switch">
+
+                                        
+
+
+                                        <mat-select class="ml-3" [(ngModel)]="section.questions[i].options[o].next" placeholder="sélectionner la section" style="font-size: 11px;">
+                                            <mat-option *ngFor="let item of form.sections; let i = index" [value]="i" >
+                                                
+                                                Accéder à({{item.title}})
+                                            </mat-option>
+                                            
+                                        </mat-select>
+                                    </div>
+                                    <input  class="question-short-text-comment" [(ngModel)]="section.questions[i].options[o].hint" placeholder="commentaire">
+
+
+                                </div>
+
+                                <div  *ngIf="staticUrl.length > 1 && section.questions[i].options[o].image.length == 0 && i == in && o == j" style="width: 100%; margin-left: 44px;position: relative;">
+                                    <img style="width: 250px;" class="img-thumbnail" src="assets/img/placeholder.png" alt="">
+
+                                    <div class="spinner-grow text-dark " style="position: absolute; left: 110px;top: 70px;" role="status">
+                                        <span class="visually-hidden"></span>
+                                    </div>
+                                </div>
+
+                                <div  *ngIf="section.questions[i].options[o].image.length > 1 " style="width: 100%; margin-left: 44px;position: relative;">
+                                    <img style="width: 250px;" class="img-thumbnail" [src]="section.questions[i].options[o].image" alt="">
+                                <!--     <img style="width: 250px;" class="img-thumbnail" [src]="section.questions[i].options[o].image" alt=""> -->
+                                    <button (click)="deleteImageOption(section.questions[i].options[o].image , i , o,s,'CC')" mat-mini-fab  color="primary" aria-label="Example icon button with a home icon" style="position: absolute;left: -16px;top: -16px;">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            
+  
+                         <div *ngIf="section.questions[i].textecourt" class="col-lg-8 col-sm-12">
+                            <input disabled class="question-short-text-response" value="réponse courte">
+                           
+
+                        </div>
+                            <mat-icon style="cursor: help;" >library_add</mat-icon>
+                            <span (click)="section.questions[i].options.push({text: '', score: 0 , image: '' , hint:'' , next:''})" style="cursor: pointer;"> Ajouter une option </span>
+                            <mat-icon *ngIf="!section.questions[i].options.textecourt" style="cursor: help;" >library_add</mat-icon>
+                            <span *ngIf="!section.questions[i].textecourt" (click)="section.questions[i].textecourt=true" style="cursor: pointer;"> Ajouter une textecourt </span>
+                            <mat-icon style="cursor: help;" *ngIf="section.questions[i].textecourt">clear</mat-icon>
+                            <span *ngIf="section.questions[i].textecourt" (click)="section.questions[i].textecourt=false" style="cursor: pointer;"> Supprimer textecourt </span>
+                      
+                        </div>
+                        <div *ngIf="section.questions[i].type == 'Grille de cases à cocher'" style="width: 100%;" class="col-lg-12 col-sm-12 w-100">
+
+                            <div  *ngFor="let op of section.questions[i].optionsSaint; let o = index;">
+                                <div class="row  m-2">
+                                 
+            
+                                    <div class="container">
+                                        <div class="row">
+                                          <div class="col">
+                                            <input  class="question-short-text-response" [(ngModel)]="section.questions[i].optionsSaint[o].text" style="padding-bottom: 5%;" placeholder="option">
+                                   
+                                          </div>
+                                          <div class="col">
+                                    
+                                            <input  (change)="onAddQuestion($event,s,'GCC')"  type="file" name="" style="display: none;" accept='image/*' id="radioPhoto" >
+                                          </div>
+                                     
+                                          <div class="col">
+                                         
+                                            <div class="form-check">
+                                                <div class="form-check form-check-inline" >
+                                                    <input input class="form-check-input" type="radio" [name]="o" [id]="o" (change)="onChange($event,i,o,s,'Absent/Pas du tout')" disabled>
+                                                    <label class="form-check-label" [for]="o"></label>
+                                                  </div>
+                                                  <div class="form-check form-check-inline">
+                                                    <input input class="form-check-input" type="radio" [name]="o" [id]="o" (change)="onChange($event,i,o,s,'Faible/Un peu')" disabled>
+                                                    <label class="form-check-label" [for]="o"></label>
+                                                  </div>
+                                                  <div class="form-check form-check-inline">
+                                                    <input input class="form-check-input" type="radio" [name]="o" [id]="o" (change)="onChange($event,i,o,s,'Modére/Moyennement')" disabled>
+                                                    <label class="form-check-label" [for]="o"></label>
+                                                  </div>
+                                                  <div class="form-check form-check-inline">
+                                                    <input input class="form-check-input" type="radio" [name]="o" [id]="o" (change)="onChange($event,i,o,s,'Fort/Beaucoup')" disabled>
+                                                    <label class="form-check-label" [for]="o"></label>
+                                                  </div>
+                                                  <div class="form-check form-check-inline">
+                                                    <input input class="form-check-input" type="radio" [name]="o" [id]="o" (change)="onChange($event,i,o,s,'Extrémement fort/Extrément')" disabled>
+                                                    <label class="form-check-label" [for]="o"></label>
+                                                  </div>
+                                                </div>
+                                               
+                                            
+                                          </div>
+                                 
+                                          <div class="col">
+                                            <mat-icon class="ico"  style="margin-left: 16px;cursor: pointer;" (click)="removeSaint(i, o,s)" *ngIf="section.questions[i].optionsSaint.length > 1"  color="primary" >close</mat-icon>
+                                         <!--    <p class="score col-md-2 col-lg-2 col-sm-2 col-xs-2 col-2">
+                                                Score: 
+                                                <input [(ngModel)]="section.questions[i].options[o].score"  class="question-score" value="0">
+                                
+                                                </p> -->
+                                     
+                                          </div>
+                                        </div>
+                                      </div>
+                             
+
+
+                                    <div class="col-2 my-4" style="display: flex;" *ngIf="section.questions[i].switch">
+
+                                        
+
+
+                                        <mat-select class="ml-3" [(ngModel)]="section.questions[i].optionsSaint[o].next" placeholder="sélectionner la section" style="font-size: 11px;">
+                                            <mat-option *ngFor="let item of form.sections; let i = index" [value]="i" >
+                                                
+                                                Accéder à({{item.title}})
+                                            </mat-option>
+                                            
+                                        </mat-select>
+                                    </div>
+                                    <!-- <input  class="question-short-text-comment" [(ngModel)]="section.questions[i].options[o].hint" placeholder="commentaire"> -->
+
+
+                                </div>
+
+                                <div  *ngIf="staticUrl.length > 1 && section.questions[i].optionsSaint[o].image.length == 0 && i == in && o == j" style="width: 100%; margin-left: 44px;position: relative;">
+                                    <img style="width: 250px;" class="img-thumbnail" src="assets/img/placeholder.png" alt="">
+
+                                    <div class="spinner-grow text-dark " style="position: absolute; left: 110px;top: 70px;" role="status">
+                                        <span class="visually-hidden"></span>
+                                    </div>
+                                </div>
+
+                                <div  *ngIf="section.questions[i].optionsSaint[o].image.length > 1 " style="width: 100%; margin-left: 44px;position: relative;">
+                                    <img style="width: 250px;" class="img-thumbnail" [src]="endpoint.url + 'getfile/' + section.questions[i].optionsSaint[o].image " alt="">
+                                    <button (click)="deleteImage(section.questions[i].optionsSaint[o].image , i , o,s)" mat-mini-fab  color="primary" aria-label="Example icon button with a home icon" style="position: absolute;left: -16px;top: -16px;">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        
+        
+                            <mat-icon style="cursor: help;" >library_add</mat-icon>
+                            <span (click)="section.questions[i].optionsSaint.push({text: '', score: 0 , image: '' , hint:'' , next:''})" style="cursor: pointer;"> Ajouter une option </span>
+                        </div>
+                     
+              
+
+
+                    
+
+                    </div>
+
+                    
+                
+            
+
+
+
+                    </div>
+        
+
+
+                
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="col-12 col-md-12 col-lg-11 mx-auto">
+            <div class="card card-to-add" (click)="createNewQuestion(s)">
+                <img class="card-img-top mx-auto" style="width: 60px;height:60px; text-align: center;" src="assets/icons/add.svg" alt="Unsplash">
+        
+        </div>
+
+
+        <div class="col-12 my-4" style="display: flex;">
+            <p>Après la section {{s + 1}}</p>
+            <select class="ml-3" [(ngModel)]="section.next" style="background-color: transparent;border: none;outline: none;margin-top: -10px;">
+                <option *ngFor="let item of form.sections; let i = index" [value]="i">Accéder a la page ({{item.title}})</option>
+            </select>
+        </div>
+        
+     
+      </div>
+    </div>
+    <div class="col-12 col-md-12 col-lg-11 mx-auto">
+        <div class="card card-to-add" (click)="createNewSection()">
+            <img class="card-img-top mx-auto" style="width: 60px;height:60px; text-align: center;" src="assets/icons/section.svg" alt="Unsplash">
+        
+        </div>
+    </div>
+    
+ <!--    <quill-editor class="content-editor" [placeholder]="''"> </quill-editor> -->
+    <br>
+  
+    <br>
+    <br><br>
+    <br><br>
+    <br>
+</div>
+<div class="col-12 col-md-12 col-lg-11 mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-header">
+          <h1 class="form-title"> Bibliographie </h1>
+        </div>
+        <div class="row" *ngFor="let message of form.messages;let m = index">
+         
+          <div class="col-lg-8">
+           <!--  <input type="text" [(ngModel)]="message.message" class="form-control question-short-text-response w-100"
+              placeholder="message"> -->
+              <textarea autosize  rows="20" autosize    [(ngModel)]="message.message" [value]="message.message" rows="2" class="question-title"  placeholder="Description" >
+            </textarea>
+          </div>
+          <div class="col-lg-1" style="display: grid; place-content: center;">
+            <button *ngIf="form.messages.length>1" mat-icon-button (click)="deleteMessage(m)" aria-label="Example icon-button with a heart icon">
+              <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <button mat-icon-button (click)="createNewMessage()" aria-label="Example icon-button with a heart icon">
+              <mat-icon aria-hidden="false" aria-label="Example home icon">add_box</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- <button mat-icon-button (click)="createNewFormule()" aria-label="Example icon-button with a heart icon">
+    <mat-icon aria-hidden="false" aria-label="Example home icon">add_box</mat-icon>
+  </button> -->
+<div *ngFor="let formCalucl of form.calculeFormule; let k = index" class="col-12 col-md-12 col-lg-11 mx-auto">
+    
+    <div class="card">
+        <div class="card-body">
+            <div class="card-header row  mr-3">       
+                <h1 class="m-3">Formule Calcule {{k}}</h1>
+                <div class="card-header row mr-3 ml-auto" >
+                    <button (click)="deleteFormCalule(k)" *ngIf="form.calculeFormule.length>1" mat-button>
+                        <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+                        Supprimer
+                    </button>
+                </div>
+            </div>
+      <div class="row">
+          <div style="width: 60%;">
+
+        <div class="card-header">
+            <button class="button button5" (click) = "getNumber('+',7,7,k,0)" value="+">+</button>
+            <button class="button button5" (click) = "getNumber('-',7,7,k,0)" value="-">-</button>
+            <button class="button button5" (click) = "getNumber('×',7,7,k,0)" value="×">×</button>
+            <button class="button button5" (click) = "getNumber('/',7,7,k,0)" value="/">/</button>
+            <button class="button button5" (click) = "getNumber('(',7,7,k,0)" value="(">(</button>
+            <button class="button button5" (click) = "getNumber(')',7,7,k,0)" value=")">)</button>
+            <button class="button button5" (click) = "getNumber(',',7,7,k,0)" value=")">,</button>
+            <button class="button button5" (click) = "clear(k)"  value="all-clear">AC</button><br>
+            <button class="button button5" (click) = "retourFormCalcul(k)"  value="all-clear"> <-- </button>
+       <section>
+       
+        <div class="example-button-row">
+            <button mat-button (click) = "getNumber(0,7,7,k,0)" color="primary">0</button>
+          <button mat-button (click) = "getNumber(1,7,7,k,0)" color="primary">1</button>
+          <button mat-button (click) = "getNumber(2,7,7,k,0)" color="primary">2</button>
+          <button mat-button (click) = "getNumber(3,7,7,k,0)" color="primary">3</button>
+          <button mat-button (click) = "getNumber(4,7,7,k,0)" color="primary">4</button><br>
+          <button mat-button (click) = "getNumber(5,7,7,k,0)" color="primary">5</button>
+          <button mat-button (click) = "getNumber(6,7,7,k,0)" color="primary">6</button>
+          <button mat-button (click) = "getNumber(7,7,7,k,0)" color="primary">7</button>
+          <button mat-button (click) = "getNumber(8,7,7,k,0)" color="primary">8</button>
+          <button mat-button (click) = "getNumber(9,7,7,k,0)" color="primary">9</button>
+ 
+        </div>
+      </section>
+       <div style="background-color: transparent">
+          <div *ngFor="let section of form.sections ;let s = index">
+              <div class="row">   <h2 style="padding: 2%;" >Section {{s}}:</h2>     
+                <div *ngFor="let question of section.questions ;let i = index" class="row" style="padding-left: 1%;">
+                    <button mat-button color="primary" style="padding: 1%;" (click)="getNumber('Q '+'('+ s +',' + i+')',s,i,k,1)">Q({{ s}} ,{{ i}})</button>
+                </div>
+           
+
+          </div>
+        </div>
+        <div class="col-lg-12">
+            <textarea autosize  rows="20" autosize    [(ngModel)]="formCalucl.formulCalcul" [value]="formCalucl.formulCalcul" rows="2" class="question-title"  placeholder="0" disabled>
+            </textarea>
+       <!--      <input type="text" class="form-control question-short-text-response w-100"
+              placeholder="Message descriptif selon le score" [(ngModel)]="formCalucl.formulCalcul" [value]="formCalucl.formulCalcul" style="width: 150%;" disabled> -->
+          </div>
+        </div>
+        <button mat-icon-button (click)="createNewFormule()" aria-label="Example icon-button with a heart icon">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">add_box</mat-icon>
+          </button>
+      </div>
+    </div>
+    <div style="width: 30%;">
+        <table >  
+            <tr>  
+               <th colspan="1">Score</th>  
+               <th colspan="2">desc</th>  
+             </tr>   
+             <tr *ngFor="let formCalucl of form.calculeFormule[k].val let z=index">  
+               <td style="width: 30%;height: 10%;">  
+                  <input type="number"class="form-control" [(ngModel)]="formCalucl.value"  [value]="formCalucl.value" placeholder="0">  
+               </td>  
+               <td >  
+                   <input type="text"  class="form-control" [(ngModel)]="formCalucl.descValue" [value]="formCalucl.descValue">  
+               
+          
+               </td>  
+           <td>  
+           <!--   <button (click)="removeQuantity(k,z)" class="btn btn-danger"  *ngIf="form.calculeFormule[k].val.length>1"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>  
+            -->
+             <button mat-icon-button (click)="removeQuantity(k,z)" aria-label="Example icon-button with a heart icon" *ngIf="form.calculeFormule[k].val.length>1">
+                <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+              </button>
+            
+            </td>  
+             </tr>  
+           </table>  
+            
+       <!--   <button type="submit" class="btn btn-success">Submit</button>  -->
+           <!-- <button mat-icon-button type="button" (click)="addQuantity(k)" class="btn btn-primary"><mat-icon aria-hidden="false" aria-label="Example home icon">add_box</mat-icon></button>
+           -->
+           <button mat-icon-button (click)="addQuantity(k)"  aria-label="Example icon-button with a heart icon">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">add_box</mat-icon>
+          </button>
+        <br/>  
+    <!--     {{this.productForm.value | json}}   -->
+    </div>
+           </div>
+    </div>
+  </div>
+</div>

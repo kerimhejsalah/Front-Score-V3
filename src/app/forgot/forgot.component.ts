@@ -29,7 +29,7 @@ export class ForgotComponent implements OnInit {
     this._auth.forgotPassword(this.forgot).subscribe(
 
       res=>{
-  
+  console.log("rrr",res)
         this.response = res;
        if(this.response.etat === 'invalid'){
         this.emailAlert = true;

@@ -19,183 +19,183 @@ interface SliderDetails {
   floor: number;
   ceil: number;
   showTicks: boolean;
-  index: number ;
-  step: number ;
-  i: number ;
-  s: number ;
-  
-}
-@Component({
-  selector: 'ngbd-modal-content',
-  template: `
-    <div class="modal-header">
-      <h4 class="modal-title">Confirmation !</h4>
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>Êtes-vous sûr de supprimer ce formulaire?</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">non</button>
-      <button type="button" class="btn btn-danger" (click)="deleteForm(); activeModal.close()">oui</button>
-   
-    </div>
-  `
-})
-export class NgbdModalContent {
-  @Input() id;
-
-  constructor(public activeModal: NgbActiveModal, private _formData: FormsDataService,
-    private route : Router,
-    ) {
-   /*    console.log("id",this.id) */
-    }
+    index: number ;
+    step: number ;
+    i: number ;
+    s: number ;
     
- /*    public barChartLables :Label[] = ['2006','2007','2008','2009','2010','2011','2012'];
-    public barChartType:ChartType ='bar';
-    public barChartLegend = true;
-    public barChartPlugins = [pluginDataLabels];
-    public barChartData: ChartDataSets[] = [
-      {
-        data: [65, 59, 80, 81, 56, 55, 40],label: 'Series A'
-      },
-      {
-        data: [28, 48, 40, 19, 86, 27, 90],label: 'Series B'
-      }
-    ] */
-  public deleteForm(){
+  }
+  @Component({
+    selector: 'ngbd-modal-content',
+    template: `
+      <div class="modal-header">
+        <h4 class="modal-title">Confirmation !</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Êtes-vous sûr de supprimer ce formulaire?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">non</button>
+        <button type="button" class="btn btn-danger" (click)="deleteForm(); activeModal.close()">oui</button>
+    
+      </div>
+    `
+  })
+  export class NgbdModalContent {
+    @Input() id;
 
-    this._formData.archiveForm(this.id).subscribe(
-      res=>{
+    constructor(public activeModal: NgbActiveModal, private _formData: FormsDataService,
+      private route : Router,
+      ) {
+    /*    console.log("id",this.id) */
+      }
+      
+  /*    public barChartLables :Label[] = ['2006','2007','2008','2009','2010','2011','2012'];
+      public barChartType:ChartType ='bar';
+      public barChartLegend = true;
+      public barChartPlugins = [pluginDataLabels];
+      public barChartData: ChartDataSets[] = [
+        {
+          data: [65, 59, 80, 81, 56, 55, 40],label: 'Series A'
+        },
+        {
+          data: [28, 48, 40, 19, 86, 27, 90],label: 'Series B'
+        }
+      ] */
+    public deleteForm(){
+
+      this._formData.archiveForm(this.id).subscribe(
+        res=>{
+            this.route.navigate(['/admin/forms']);
+        },
+        err=>{
           this.route.navigate(['/admin/forms']);
-      },
-      err=>{
-        this.route.navigate(['/admin/forms']);
-        
+          
+        }
+      );
+
+  }
+  public openTab(){
+  /*   console.log("ddd") */
+  }
+
+  }
+
+
+
+
+
+
+  @Component({
+    selector: 'ngbd-modal-lock',
+    styleUrls: ['./detail-form.component.css'],
+    template: `
+      <div class="modal-header">
+        <h4 class="modal-title">verrouillage !</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="pass && pass.length > 0">
+        <input type="password" [(ngModel)]="password" placeholder="code de verrouillage" [ngClass]="{'form-control' : true, 'm-2' : true ,'error': testPassword}">
+        <p class="text-danger ml-2" *ngIf="testPassword" >Minimum 6 caractères</p>
+        <p class="text-danger ml-2" *ngIf="incorrectPassword">Mot de pass incorrecte</p>
+        <input type="password" [(ngModel)]="repeatPassword" placeholder="confirmer le code de verrouillage" [ngClass]="{'form-control' : true, 'm-2' : true ,'error': testRepeat}">
+      
+      </div>
+
+      <div *ngIf="!pass || pass.length == 0"  class="modal-body">
+        <input type="password" [(ngModel)]="password" placeholder="code de verrouillage" [ngClass]="{'form-control' : true, 'm-2' : true ,'error': testPassword}">
+        <p class="text-danger ml-2" *ngIf="testPassword" >Minimum 6 caractères</p>
+        <input type="password" [(ngModel)]="repeatPassword" placeholder="confirmer le code de verrouillage" [ngClass]="{'form-control' : true, 'm-2' : true ,'error': testRepeat}">
+      
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" *ngIf="pass && pass.length > 0"  (click)="updatePass(); ">déverrouiller</button>
+        <button type="button" class="btn btn-danger" *ngIf="!pass || pass.length == 0"  (click)="newPass();">verrouiller</button>
+    
+      </div>
+    `
+  })
+  export class NgbdModalLock implements OnInit {
+    @Input() id;
+    @Input() pass;
+    
+    password = '';
+    repeatPassword = '';
+
+    testPassword = false;
+    testRepeat = false;
+    incorrectPassword = false;
+
+    constructor(public activeModal: NgbActiveModal, private _formData: FormsDataService,
+      private _iploadImg: UploadimageService,
+      private route : Router,
+      ) {
+      /*   console.log("formmm",this.pass) */
+
       }
-    );
 
-}
-public openTab(){
-/*   console.log("ddd") */
-}
-
-}
-
-
-
-
-
-
-@Component({
-  selector: 'ngbd-modal-lock',
-  styleUrls: ['./detail-form.component.css'],
-  template: `
-    <div class="modal-header">
-      <h4 class="modal-title">verrouillage !</h4>
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body" *ngIf="pass && pass.length > 0">
-      <input type="password" [(ngModel)]="password" placeholder="code de verrouillage" [ngClass]="{'form-control' : true, 'm-2' : true ,'error': testPassword}">
-      <p class="text-danger ml-2" *ngIf="testPassword" >Minimum 6 caractères</p>
-      <p class="text-danger ml-2" *ngIf="incorrectPassword">Mot de pass incorrecte</p>
-      <input type="password" [(ngModel)]="repeatPassword" placeholder="confirmer le code de verrouillage" [ngClass]="{'form-control' : true, 'm-2' : true ,'error': testRepeat}">
-     
-    </div>
-
-    <div *ngIf="!pass || pass.length == 0"  class="modal-body">
-      <input type="password" [(ngModel)]="password" placeholder="code de verrouillage" [ngClass]="{'form-control' : true, 'm-2' : true ,'error': testPassword}">
-      <p class="text-danger ml-2" *ngIf="testPassword" >Minimum 6 caractères</p>
-      <input type="password" [(ngModel)]="repeatPassword" placeholder="confirmer le code de verrouillage" [ngClass]="{'form-control' : true, 'm-2' : true ,'error': testRepeat}">
-     
-    </div>
-
-    <div class="modal-footer">
-      <button type="button" class="btn btn-danger" *ngIf="pass && pass.length > 0"  (click)="updatePass(); ">déverrouiller</button>
-      <button type="button" class="btn btn-danger" *ngIf="!pass || pass.length == 0"  (click)="newPass();">verrouiller</button>
-   
-    </div>
-  `
-})
-export class NgbdModalLock implements OnInit {
-  @Input() id;
-  @Input() pass;
   
-  password = '';
-  repeatPassword = '';
+      ngOnInit(): void {
 
-  testPassword = false;
-  testRepeat = false;
-  incorrectPassword = false;
-
-  constructor(public activeModal: NgbActiveModal, private _formData: FormsDataService,
-    private _iploadImg: UploadimageService,
-    private route : Router,
-    ) {
-    /*   console.log("formmm",this.pass) */
-
+      }
+    public updatePass(){
+      this.incorrectPassword = false;
+      this.testPassword = false;
+      this.testRepeat = false;
+      if( this.password.length < 6 ){
+        this.testPassword = true;
     }
+      else if( this.password != this.repeatPassword){
+      this.testRepeat = true;
+      
+    }else {
+    
+        this._formData.updatePassword(this.id , {password: this.password}).subscribe(
+          res=>{
+              window.location.reload();
+          },
+          err=>{
+            this.incorrectPassword = true;
+            
+          }
+        );
+      }
 
- 
-    ngOnInit(): void {
+  }
 
-    }
-  public updatePass(){
-    this.incorrectPassword = false;
+
+  public newPass(){
     this.testPassword = false;
     this.testRepeat = false;
     if( this.password.length < 6 ){
       this.testPassword = true;
-   }
-     else if( this.password != this.repeatPassword){
-     this.testRepeat = true;
+    }
+      else if( this.password != this.repeatPassword){
+      this.testRepeat = true;
     
-   }else {
-   
-      this._formData.updatePassword(this.id , {password: this.password}).subscribe(
+    }else {
+      this._formData.newPassword(this.id , {password: this.password}).subscribe(
         res=>{
             window.location.reload();
         },
         err=>{
-          this.incorrectPassword = true;
+      
+          
           
         }
       );
+  
     }
 
-}
-
-
-public newPass(){
-  this.testPassword = false;
-  this.testRepeat = false;
-  if( this.password.length < 6 ){
-     this.testPassword = true;
-  }
-    else if( this.password != this.repeatPassword){
-    this.testRepeat = true;
-   
-  }else {
-    this._formData.newPassword(this.id , {password: this.password}).subscribe(
-      res=>{
-          window.location.reload();
-      },
-      err=>{
-    
-        
-        
-      }
-    );
- 
   }
 
-}
-
-}
+  }
 
 
 
@@ -205,77 +205,77 @@ public newPass(){
 
 
 
-@Component({
-  selector: 'ngbd-modal-checklock',
-  styleUrls: ['./detail-form.component.scss'],
-  template: `
-    <div class="modal-header">
-      <h4 class="modal-title">verrouillage !</h4>
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body" >
-      <input type="password" [(ngModel)]="password" placeholder="code de verrouillage" [ngClass]="{'form-control' : true, 'm-2' : true ,'error': testPassword}">
-      <p class="text-danger" *ngIf="incorrectPassword">Mot de pass incorrecte</p>
-      <p class="text-danger ml-2" *ngIf="testPassword" >Minimum 6 caractères</p>
-   
-    </div>
-
- 
-
-    <div class="modal-footer">
-      <button type="button" class="btn btn-danger"   (click)="permit(); "> Enregistrer</button>
+  @Component({
+    selector: 'ngbd-modal-checklock',
+    styleUrls: ['./detail-form.component.scss'],
+    template: `
+      <div class="modal-header">
+        <h4 class="modal-title">verrouillage !</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+        <input type="password" [(ngModel)]="password" placeholder="code de verrouillage" [ngClass]="{'form-control' : true, 'm-2' : true ,'error': testPassword}">
+        <p class="text-danger" *ngIf="incorrectPassword">Mot de pass incorrecte</p>
+        <p class="text-danger ml-2" *ngIf="testPassword" >Minimum 6 caractères</p>
     
-    </div>
-  `
-})
-export class NgbdModalCheckLock implements OnInit {
-  @Input() id;
-  @Input() form;
-  
-  password = '';
+      </div>
+
   
 
-  testPassword = false;
-  incorrectPassword = false;
-  constructor(public activeModal: NgbActiveModal, private _formData: FormsDataService,
-    private route : Router,
-    private toastr: ToastrService,
-    ) {
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger"   (click)="permit(); "> Enregistrer</button>
+      
+      </div>
+    `
+  })
+  export class NgbdModalCheckLock implements OnInit {
+    @Input() id;
+    @Input() form;
+    
+    password = '';
     
 
-    }
+    testPassword = false;
+    incorrectPassword = false;
+    constructor(public activeModal: NgbActiveModal, private _formData: FormsDataService,
+      private route : Router,
+      private toastr: ToastrService,
+      ) {
+      
 
-    ngOnInit(): void {
-
-    }
-
-    permit(){
-      this.testPassword = false;
-      this.incorrectPassword = false;
-      if(this.password.length > 5){
-        this.form.password = this.password;
-        this._formData.updateForm(this.id , this.form).subscribe(
-          res=>{
-            this.toastr.success('Formulaire mis à jour avec succès! ', 'succès!');
-            window.location.reload();
-
-          },
-          err=>{
-            this.incorrectPassword = true;
-          /*   console.log(this.testPassword); */
-            
-          }
-        );
-      }else{
-        this.testPassword = true;
       }
 
-    }
+      ngOnInit(): void {
+
+      }
+
+      permit(){
+        this.testPassword = false;
+        this.incorrectPassword = false;
+        if(this.password.length > 5){
+          this.form.password = this.password;
+          this._formData.updateForm(this.id , this.form).subscribe(
+            res=>{
+              this.toastr.success('Formulaire mis à jour avec succès! ', 'succès!');
+              window.location.reload();
+
+            },
+            err=>{
+              this.incorrectPassword = true;
+            /*   console.log(this.testPassword); */
+              
+            }
+          );
+        }else{
+          this.testPassword = true;
+        }
+
+      }
 
 
-}
+  }
 
 
 
@@ -310,6 +310,14 @@ export class DetailFormComponent implements OnInit , AfterViewInit{
                 });  
                 this.getScreenSize();
               }
+
+
+              formMuti = [{
+                formulCalcul:"",
+                indexScoreForm:[],
+                val:[]
+}
+              ]
               public productForm: FormGroup;
               @HostListener('window:resize', ['$event'])
               getScreenSize(event?) {
@@ -535,8 +543,8 @@ newRange(i:any,s:any){
       res=>{
         let inc=0;
         this.form = res;
-        
-        console.log("this.form",this.form.formMuti.length)
+          /* this.form.formMuti  =this.formMuti   */
+        console.log("this.form",this.form.formMuti        )
       this.form.sections.map((res)=>{
    /*      console.log("kkk",res) */
          res.questions.map((res)=>{
@@ -1394,6 +1402,7 @@ handleFileInput(file: FileList, s:any,type) {
   operator = null;
   waitForSecondNumber = false;
   public getNumber(v,val1,val2,k,val){
+    //console.log(v,val1,val2,k,val)
     if(this.waitForSecondNumber)
     {
       this.currentNumber = v;
@@ -1401,7 +1410,7 @@ handleFileInput(file: FileList, s:any,type) {
       this.waitForSecondNumber = false;
     }else{
     /*   this.currentNumber === '0'? this.currentNumber = v: this.currentNumber += v;
-      console.log(11111,this.form.calculeFormule[k].formulCalcul)
+     // console.log(11111,this.form.calculeFormule[k].formulCalcul)
       this.form.calculeFormule[k].formulCalcul === '0'? this.form.calculeFormule[k].formulCalcul = v: this.form.calculeFormule[k].formulCalcul += v; */
     /*   console.log(11111 ) */
      this.currentNumber === '0'? this.currentNumber = v: this.currentNumber += v;

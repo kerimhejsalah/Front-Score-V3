@@ -156,7 +156,7 @@ if(result){
   this.id = this.router.snapshot.paramMap.get('id');
     this._dossier.getMyForm(this.id).subscribe(
       res=>{
-        console.log(res)
+       // console.log(res)
        this.allForms = res;
   },
   err=>{
@@ -246,6 +246,7 @@ ngAfterViewInit(){
   this.id = this.router.snapshot.paramMap.get('id');
 this._dossier.getdossierById(this.id).subscribe(
 res=>{
+//  console.log(res)
 this.dossier = res;
 
 },
@@ -261,7 +262,7 @@ err=>{
 
 this.allForms = res;
 
-/* console.log("this.allForms",this.allForms) */
+  console.log("this.allForms",this.allForms) 
 },
 err=>{
 

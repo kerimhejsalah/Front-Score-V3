@@ -54,9 +54,7 @@ import { PrixComponent } from './companent/prix/prix.component';
     MyDialogComponent,
     MyDialogAffectListComponent,
     VideoComponent,
-    PrixComponent
-  
-
+    PrixComponent,
   ],
   imports: [
     Ng5SliderModule,

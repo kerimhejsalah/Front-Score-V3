@@ -10,7 +10,7 @@ import { DoctorDataService } from '../services/doctor-data.service';
 export class AdmincheckformComponent implements OnInit {
 
   constructor(private _doctor: DoctorDataService, private route: ActivatedRoute) { }
-
+   
   id: any;
   affectations:any;
   doctor: any;
